@@ -1,0 +1,10 @@
+这是一个初级版本，对输入参数未进行较强的正确性判断，为确保运行成功请注意一下事项。
+1、程序的作用是将指定的cpu的cpu利用率设置为一个大于0且小于1的数。
+2、基本用法 cpu_limit (int)cpu_number (float)cpu_utilization_percentage
+   例如:
+   cpu_limit 0 0.75
+   执行以上语句将cpu0的利用率设置为75%
+3、不要尝试输入非法的参数，因为这些参数在程序中未加入错误处理，例如：
+   不要输入不存在的cpu_number;
+   不要输入float(0,1]范围以外的cpu_utilization_percentage
+4、如有任何问题，可自行修改程序，或与kun.he@cs2c.com.cn联系。
