@@ -18,7 +18,40 @@ int main(int argc, char *argv[])
     char * memint = NULL;
     char * mem_set_value = argv[1];
     
-    set_opt(mem_set_value, psetrate, psetvalue);
+    if(set_opt(mem_set_value, psetrate, psetvalue) == 0)
+    {
+        while(setvalue < 100 * 1024 * 1024)
+        {
+            printf("For the reason that the OS need some memory to maintain the basic operations, we **DO NOT** sujest you to input a memory size under 100MB. Some mistake would uccor if you continue.\nWould you like to continue or not? Y/N ");
+            char c_yon = '0';
+            scanf("%c", &c_yon);
+        //    getchar();
+            if (('Y' == c_yon) || ('y' == c_yon))
+            {
+                break;   
+            }
+            else if (('N' == c_yon) || ('n' == c_yon))
+            {
+                printf("Please input a memory size larger than 100MB: ");
+                char * _mem_set_value = (char *)malloc(32 * sizeof(char));
+                scanf("%s", _mem_set_value);
+                getchar();
+                if(set_opt(_mem_set_value, psetrate, psetvalue) != 0)
+                {   
+                    return -2;
+                }
+            }
+            else
+            {
+                printf("Input error!\n");
+                return -1;
+            } 
+        }
+    }
+    else
+    {
+        return -2;
+    } 
     
     drop_cache("3");
 
@@ -109,7 +142,7 @@ int set_opt(char * pmem, long * psetrate, long * psetvalue)
     }
     else
     {
-        printf("Input error!\n");
+        printf("Input memory size error!\n");
         return -1;
     }
     return 0;

@@ -1,5 +1,4 @@
-/**
- *
+/** wulw, jianyaoshuoming.
  * Get the free space size of system memory.
  * @return  type: long value: the free space.   
 */
