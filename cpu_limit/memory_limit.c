@@ -49,6 +49,9 @@ int main(int argc, char *argv[])
         printf("Input error!\n");
         return -2;
     }
+
+    drop_cache("3");
+
     while (1)
     {
         if(setvalue < free_mem())
@@ -85,7 +88,6 @@ long free_mem()
     read = getline(&line, &len, f);
     read = getline(&line, &len, f);
     fclose(f);
-    // char newchar[512];
     char *newchar = (char*)malloc(read * sizeof(char));
     char *opt = newchar;
     int i = 0;
@@ -102,4 +104,17 @@ long free_mem()
     long ret = atoi(newchar);
     free(newchar);
     return ret * 1024;
+}
+
+int drop_cache(char * value)
+{
+    int ret = 0;
+    FILE * fp = fopen("/proc/sys/vm/drop_caches", "w");
+    if(!fwrite(value, strlen(value), 1, fp))
+    {
+        ret = -1;
+    }
+    fclose(fp);
+    fp = NULL;
+    return ret;
 }
