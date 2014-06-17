@@ -13,50 +13,19 @@ int main(int argc, char *argv[])
     }
     long setvalue = 0;
     long setrate = 0;
-    char setunit = '0';
+    long *psetvalue = &setvalue;
+    long *psetrate = &setrate;
     char * memint = NULL;
     char * mem_set_value = argv[1];
-    setunit = *(mem_set_value + strlen(mem_set_value) - 1);
-    if ('G' == setunit || 'g' == setunit)
-    {
-        setrate = 1024 * 1024 * 1024;
-        *(mem_set_value + strlen(mem_set_value) - 1) = '\0';
-        setvalue = setrate * atoi(mem_set_value);
-        printf("Set free memory to: %ld bytes.\n", setvalue);
-    }
-    else if ('M' == setunit || 'm' == setunit)
-    {
-        setrate = 1024 * 1024;
-        *(mem_set_value + strlen(mem_set_value) - 1) = '\0';
-        setvalue = setrate * atoi(mem_set_value);
-        printf("Set free memory to: %ld bytes.\n", setvalue);
-    }
-    else if ('K' == setunit || 'k' == setunit)
-    {
-        setrate = 1024;
-        *(mem_set_value + strlen(mem_set_value) - 1) = '\0';
-        setvalue = setrate * atoi(mem_set_value);
-        printf("Set free memory to: %ld bytes.\n", setvalue);
-    }
-    else if ('B' == setunit || (setunit >= '0' && setunit <= '9'))
-    {
-        setrate = 1;
-        setvalue = atoi(mem_set_value);
-        printf("Set free memory to: %ld bytes.\n", setvalue);
-    }
-    else
-    {
-        printf("Input error!\n");
-        return -2;
-    }
-
+    
+    set_opt(mem_set_value, psetrate, psetvalue);
+    
     drop_cache("3");
 
     while (1)
     {
         if(setvalue < free_mem())
         {
-            // printf("%ld\n", free_mem());
             memint = (char *)malloc(setrate *sizeof(char));
             memset(memint, '0', setrate);
             if (memint == NULL)
@@ -104,6 +73,46 @@ long free_mem()
     long ret = atoi(newchar);
     free(newchar);
     return ret * 1024;
+}
+
+
+int set_opt(char * pmem, long * psetrate, long * psetvalue)
+{
+    char setunit = '0';
+    setunit = *(pmem + strlen(pmem) - 1);
+    if ('G' == setunit || 'g' == setunit)
+    {
+        *psetrate = 1024 * 1024;
+        *(pmem + strlen(pmem) - 1) = '\0';
+        *psetvalue = (*psetrate) * 1024 * atoi(pmem);
+        printf("Set free memory to: %ld bytes.\n", *psetvalue);
+    }
+    else if ('M' == setunit || 'm' == setunit)
+    {
+        *psetrate = 1024 * 1024;
+        *(pmem + strlen(pmem) - 1) = '\0';
+        *psetvalue = (*psetrate) * atoi(pmem);
+        printf("Set free memory to: %ld bytes.\n", *psetvalue);
+    }
+    else if ('K' == setunit || 'k' == setunit)
+    {
+        *psetrate = 1024;
+        *(pmem + strlen(pmem) - 1) = '\0';
+        *psetvalue = (*psetrate) * atoi(pmem);
+        printf("Set free memory to: %ld bytes.\n", *psetvalue);
+    }
+    else if ('B' == setunit || (setunit >= '0' && setunit <= '9'))
+    {
+        *psetrate = 1;
+        *psetvalue = (*psetrate) * atoi(pmem);
+        printf("Set free memory to: %ld bytes.\n", *psetvalue);
+    }
+    else
+    {
+        printf("Input error!\n");
+        return -1;
+    }
+    return 0;
 }
 
 int drop_cache(char * value)
