@@ -20,7 +20,9 @@
 # include <sys/time.h>
 # define __USE_GNU
 # include <sched.h>
-# define total 1000000
+# include <pthread.h>
+# include "cpu_limit.h"
+# define total 1000
 # define micro 1000000
 int main(int argc, char *argv[])
 {
@@ -29,8 +31,28 @@ int main(int argc, char *argv[])
         printf ("Use this function as bellow:\ncpu_limit cpu_number cpu_utilization_percentage\nSuch as:\ncpu_limit 0 0.75\nRun this command will set the cpu utilization percentage of cpu 0 upto 75 percent.\n");
         return -1;
     }
-    int cpu = atoi(argv[1]);
-    double percent = atof(argv[2]);
+    cpu_utilization cpu_arg = {0, 0};
+    cpu_arg.cpu = atoi(argv[1]);
+    cpu_arg.utilization = atof(argv[2]);
+    pthread_t tid;
+    void * retval;
+    if (pthread_create(&tid, NULL, thread_bind_cpu, (void *)(&cpu_arg)))
+    {
+        printf("Create thread faild.\n");
+        return -2;
+    }
+    else
+    {
+        pthread_join(tid, retval);
+    }
+    return 0;
+}
+
+void * thread_bind_cpu(void * arg)
+{
+    cpu_utilization * arg_cpu = (cpu_utilization *)arg;
+    int cpu = (*arg_cpu).cpu;
+    double percent = (*arg_cpu).utilization;
     long busy = total * percent;
     long idle = total - busy;
     long start = 0;
@@ -53,5 +75,4 @@ int main(int argc, char *argv[])
         }
         usleep(idle);
     }
-    return 0;
 }

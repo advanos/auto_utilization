@@ -25,7 +25,6 @@ int main(int argc, char *argv[])
             printf("For the reason that the OS need some memory to maintain the basic operations, we **DO NOT** sujest you to input a memory size under 100MB. Some mistake would uccor if you continue.\nWould you like to continue or not? Y/N ");
             char c_yon = '0';
             scanf("%c", &c_yon);
-        //    getchar();
             if (('Y' == c_yon) || ('y' == c_yon))
             {
                 break;   
