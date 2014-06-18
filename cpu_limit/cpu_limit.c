@@ -10,7 +10,7 @@
 // Para2:        float cpu_num: The percentage of the cpu_utilization.
 // Return:       Zero for succeed, nonezero for faild.
 // Copyright:    China Standard Software Co., Ltd.
-// History：     
+// History:     
 //               Version 0.1, 2014/06/12
 //               - The first one.
 // ------------------------------------------------------------------------
@@ -27,14 +27,17 @@
 # define micro 1000000
 int main(int argc, char *argv[])
 {
+    /// argc = 1, all by yourself.
     if (1 == argc)
     {
-        printf("Please input the cpu set, such as:\n0-3\nor:0_2_4\n");
+        printf("Please input the cpu set, such as:\n0-3\nor:0.2.4\n");
         char * cpuset = (char *)malloc(128 * sizeof(char));
         int size = -1;
         cpu_utilization * cpu_args_origin = NULL;
         cpu_utilization * cpu_args = NULL;
         scanf("%s", cpuset);
+        getchar();
+        /// range by m to n(such as: m-n).
         if (strstr(cpuset, "-") != NULL)
         {
             int cpu_begin = -1;
@@ -63,47 +66,32 @@ int main(int argc, char *argv[])
                         (*cpu_args).cpu = i;
                         cpu_args++;
                     }
-                    printf("Please input the utilization for the cpuset:\n");
-                    char * percentage = (char *)malloc(128 * sizeof(char));
-                    scanf("%s", percentage);
-                    if ((atof(percentage) <= 0) || (atof(percentage) > 1))
-                    {
-                        usages();
-                        free(cpuset);
-                        free(cpu_args_origin);
-                        free(percentage);
-                        percentage = NULL;
-                        cpu_args = NULL;
-                        cpu_args_origin = NULL;
-                        cpuset = NULL;
-                        return -1;
-                    }
-                    cpu_args = cpu_args_origin;
-                    for(i = 0; i < size; i++)
-                    {
-                        (*cpu_args).utilization = atof(percentage);
-                        cpu_args++;
-                    }
+                    /// set cpu_args_origin.utilization
+                    set_cpu_percentage(cpu_args_origin, size);
                 }
             }
         }
-        else if (strstr(cpuset, "_") != NULL)
+        /// cpuset by '.', such as: a.b.c
+        else if (strstr(cpuset, ".") != NULL)
         {
             size = 1;
             char * tmp_cpuset = cpuset;
             int i = 0;
+            /// get size of the cpuset.
             while ('\0' != *(tmp_cpuset + i))
             {
-                if ('_' == *(tmp_cpuset + i))
+                if ('.' == *(tmp_cpuset + i))
                 {
                     size++;
                 }
                 i++;
             }
+            /// malloc cpu_args_origin
             cpu_args_origin = (cpu_utilization *)malloc(size * sizeof(cpu_utilization));
             cpu_args = cpu_args_origin;
             i = 0;
-            char * result = strtok(cpuset, "_");
+            /// set cpu_args_origin.cpu
+            char * result = strtok(cpuset, ".");
             if(result != NULL)
             {
                 if ((atoi(result) < 0) || (atoi(result) >= sysconf(_SC_NPROCESSORS_ONLN)))
@@ -121,7 +109,7 @@ int main(int argc, char *argv[])
                 }
                 while(result != NULL)
                 {
-                    result = strtok(NULL, "_");
+                    result = strtok(NULL, ".");
                     if (NULL == result)
                     {
                         break;
@@ -137,11 +125,12 @@ int main(int argc, char *argv[])
                     else
                     {
                         (*cpu_args).cpu = atoi(result);
-                        printf("Would you like to set all the cpus' utilization to a same value?\nY/N ");
                         cpu_args++;
                     }
                 }
             }
+            /// set cpu_args_origin.utilization
+            set_cpu_percentage(cpu_args_origin, size);
         }
         else
         {
@@ -160,6 +149,7 @@ int main(int argc, char *argv[])
         cpu_args_origin = NULL;
         cpuset = NULL;
     }
+    /// argc = 2, all cpu at a same utilization.
     else if (2 == argc)
     {
         if ((atof(argv[1]) <= 0) || (atof(argv[1]) > 1.0))
@@ -179,6 +169,7 @@ int main(int argc, char *argv[])
         }
         multi_threads_run(cpu_args_origin, size);
     }
+    /// argc = 3, an utilization of one cpu.
     else if ( 3 == argc)
     {
         if ((atoi(argv[1]) < 0) || (atoi(argv[1]) >= sysconf(_SC_NPROCESSORS_ONLN)) || (atof(argv[2]) <= 0) || (atof(argv[2]) > 1))
@@ -198,6 +189,7 @@ int main(int argc, char *argv[])
     }
     int tmp;
     scanf("%d", &tmp);
+    getchar();
     return 0;
 }
 
@@ -250,68 +242,50 @@ int multi_threads_run(cpu_utilization * cpu_args, int size)
             cpu_args++;
         }
     }
+    printf("Cpus are busy now...\nPress '<Ctrl + C>' to end.");
     p_tid = NULL;
     free(p_tid_origin);
     p_tid_origin = NULL;
+    return 0;
 }
 
 int set_cpu_percentage(cpu_utilization * cpu_args_origin, int size)
 {
-    char * cpu_args = cpu_args_origin;
-    printf("Would you like to set all the cpus' utilization to a same value?\nY/N ");
+    cpu_utilization * cpu_args = cpu_args_origin;
+    printf("Would you like to set all the cpus' utilization to a same value?\nY/N: ");
     char c_yon = '0';
     scanf("%c", &c_yon);
+    getchar();
+    int i = 0;
     if (('Y' == c_yon) || ('y' == c_yon))
     {
         double percentage = 0;
         get_percentage_value(&percentage);
         for(i = 0; i < size; i++)
         {
-            (*cpu_args).utilization = atof(percentage);
+            (*cpu_args).utilization = percentage;
             cpu_args++;
         }
-        cpu_agrs = NULL;
+        cpu_args = NULL;
         return 0;
     }
     else if (('N' == c_yon) || ('n' == c_yon))
     {
-        int while_flag = 0;
-        while (0 == while_flag)
+        double percentage = 0;
+        for(i = 0; i < size; i++)
         {
-            printf("Please input the utilization for the cpuset, the value must be larger than 0 and smaller than 1(Input 'EOF' for exit.):\n");
-            scanf("%s", percentage);
-            if ('EOF' == percentage)
-            {
-                return -2; 
-            }
-            if ((atof(percentage) <= 0) || (atof(percentage) > 1))
-            {
-                pirntf("Percentage illegal. Please retry.\n")
-                continue;
-            }
-            else
-            {
-                while_flag = 1;
-                for(i = 0; i < size; i++)
-                {
-                    (*cpu_args).utilization = atof(percentage);
-                    cpu_args++;
-                }
-                cpu_agrs = NULL;
-                return 0;
-            }
-        printf("Please input a memory size larger than 100MB: ");
-        char * _mem_set_value = (char *)malloc(32 * sizeof(char));
-        scanf("%s", _mem_set_value);
-        getchar();
-        if(set_opt(_mem_set_value, psetrate, psetvalue) != 0)
-        {   
-            return -2;
+            printf("=============================================================\n");
+            printf("Please input the utilization of cpu %d:\n", (*cpu_args).cpu);
+            get_percentage_value(&percentage);
+            (*cpu_args).utilization = percentage;
+            cpu_args++;
         }
+        cpu_args = NULL;
+        return 0;
      }
      else
      {
-         printf("Input error!\n");
+         printf("Bad decision!\n");
          return -1;
      } 
 }
@@ -323,9 +297,10 @@ int get_percentage_value(double * p_percentage)
     int while_flag = 0;
     while (0 == while_flag)
     {
-        printf("Please input the utilization for the cpuset, the value must be larger than 0 and smaller than 1(Input 'EOF' for exit.):\n");
+        printf("Please input the utilization for the cpuset, the value must be between (0,1].\nSuch as: 0.25\nNotice: input 'EOF' for exit.\nPercentage: ");
         scanf("%s", percentage);
-        if ('EOF' == percentage)
+        getchar();
+        if ("EOF" == percentage)
         {
             free(percentage);
             percentage = NULL;
@@ -333,7 +308,7 @@ int get_percentage_value(double * p_percentage)
         }
         if ((atof(percentage) <= 0) || (atof(percentage) > 1))
         {
-            pirntf("Percentage illegal. Please retry.\n")
+            printf("Percentage illegal. Please retry.\n");
             continue;
         }
         else

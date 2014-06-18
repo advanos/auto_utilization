@@ -6,4 +6,6 @@ typedef struct CPU_UTILIZATION
 
 void * thread_bind_cpu(void *);
 int multi_threads_run(cpu_utilization *, int);
+int get_percentage_value(double *);
+int set_cpu_percentage(cpu_utilization *, int);
 void usages();
