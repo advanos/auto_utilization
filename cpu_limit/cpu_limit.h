@@ -5,3 +5,4 @@ typedef struct CPU_UTILIZATION
 } cpu_utilization;
 
 void * thread_bind_cpu(void *);
+int multi_threads_run(cpu_utilization *, int);

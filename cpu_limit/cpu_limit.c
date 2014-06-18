@@ -22,29 +22,41 @@
 # include <sched.h>
 # include <pthread.h>
 # include "cpu_limit.h"
-# define total 1000
+# define total 10000
 # define micro 1000000
 int main(int argc, char *argv[])
 {
-    if (argc != 3)
+    if (1 == argc)
     {
-        printf ("Use this function as bellow:\ncpu_limit cpu_number cpu_utilization_percentage\nSuch as:\ncpu_limit 0 0.75\nRun this command will set the cpu utilization percentage of cpu 0 upto 75 percent.\n");
-        return -1;
     }
-    cpu_utilization cpu_arg = {0, 0};
-    cpu_arg.cpu = atoi(argv[1]);
-    cpu_arg.utilization = atof(argv[2]);
-    pthread_t tid;
-    void * retval;
-    if (pthread_create(&tid, NULL, thread_bind_cpu, (void *)(&cpu_arg)))
+    else if (2 == argc)
     {
-        printf("Create thread faild.\n");
-        return -2;
+        int size = 2;
+        cpu_utilization * cpu_args_origin = (cpu_utilization *)malloc(size * sizeof(cpu_utilization));
+        cpu_utilization * cpu_args = cpu_args_origin;
+        int i = 0;
+        for(i = 0; i < size; i++)
+        {
+            (*cpu_args).cpu = i;
+            (*cpu_args).utilization = 0.5;
+            cpu_args++;
+        }
+        multi_threads_run(cpu_args_origin, size);
+    }
+    else if ( 3 == argc)
+    {
+        cpu_utilization cpu_arg = {0, 0};
+        cpu_arg.cpu = atoi(argv[1]);
+        cpu_arg.utilization = atof(argv[2]);
+        multi_threads_run(&cpu_arg, 1);
     }
     else
     {
-        pthread_join(tid, retval);
+        printf ("Use this function as bellow:\n(1) cpu_limit cpu_number cpu_utilization_percentage\nSuch as:\ncpu_limit 0 0.75\nRun this command will set the cpu utilization percentage of cpu 0 upto 75 percent.\n(2) cpu_limit\nRun this command will show you the options to choose.\n");
+        return -1;
     }
+    int tmp;
+    scanf("%d", &tmp);
     return 0;
 }
 
@@ -58,7 +70,6 @@ void * thread_bind_cpu(void * arg)
     long start = 0;
     long stop = 0;
     struct timeval begin, end;
-
     cpu_set_t mask;
     CPU_ZERO(&mask);
     CPU_SET(cpu, &mask);
@@ -75,4 +86,27 @@ void * thread_bind_cpu(void * arg)
         }
         usleep(idle);
     }
+}
+
+int multi_threads_run(cpu_utilization * cpu_args, int size)
+{
+    pthread_t * p_tid_origin = (pthread_t *)malloc(size * sizeof(pthread_t));
+    pthread_t * p_tid = p_tid_origin;
+    int i = 0;
+    for (i = 0; i < size; i++)
+    {
+        if (pthread_create(p_tid, NULL, thread_bind_cpu, (void *)(cpu_args)))
+        {
+            printf("Create thread faild.\n");
+            return -2;
+        }
+        else
+        {
+            p_tid++;
+            cpu_args++;
+        }
+    }
+    p_tid = NULL;
+    free(p_tid_origin);
+    p_tid_origin = NULL;
 }
