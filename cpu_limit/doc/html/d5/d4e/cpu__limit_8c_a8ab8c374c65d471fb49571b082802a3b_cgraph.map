@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d5/d4e/cpu__limit_8c.html#a6dcadcbc9ccbe62979354f3c0e44b895" title="Spend specified utilization percentages to several cpus." alt="" coords="148,5,273,35"/>
+<area shape="rect" id="node7" href="$d5/d4e/cpu__limit_8c.html#aa4f72fe91bc897f56287aca36a912aec" title="Set cpu utilization percentage to a same value or different ones." alt="" coords="141,59,280,88"/>
+<area shape="rect" id="node11" href="$d5/d4e/cpu__limit_8c.html#aace1d33c3bcb8de79f41e78288cf6c0a" title="usages" alt="" coords="179,112,243,141"/>
+<area shape="rect" id="node5" href="$d5/d4e/cpu__limit_8c.html#ab861afb25d3e949b511b54f1a7c2027e" title="Bind a thread with a cpu and this thread will spend some utilization more of the..." alt="" coords="344,5,461,35"/>
+<area shape="rect" id="node9" href="$d5/d4e/cpu__limit_8c.html#a068c17be2ba9ba7412376cead7647cba" title="Get cpu utilization percentage from stdin." alt="" coords="328,59,477,88"/>
+</map>

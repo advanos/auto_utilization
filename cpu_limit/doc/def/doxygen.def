@@ -23,8 +23,13 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        sec-mem-ref-line = '42';
+        sec-mem-ref-line = '44';
         sec-mem-ref-name = 'main';
+    };
+      sec-mem-referenceby = {
+        sec-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8ab8c374c65d471fb49571b082802a3b';
+        sec-mem-ref-line = '415';
+        sec-mem-ref-name = 'set_cpuset';
     };
     }; /* sec-member */
     sec-member = {
@@ -46,7 +51,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        sec-mem-ref-line = '42';
+        sec-mem-ref-line = '44';
         sec-mem-ref-name = 'main';
     };
     }; /* sec-member */
@@ -98,7 +103,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a3d14434a76d88b531b6d4ab124703968';
-        define-mem-ref-line = '226';
+        define-mem-ref-line = '140';
         define-mem-ref-name = 'thread_bind_cpu';
     };
     }; /* define-member */
@@ -121,7 +126,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a3d14434a76d88b531b6d4ab124703968';
-        define-mem-ref-line = '226';
+        define-mem-ref-line = '140';
         define-mem-ref-name = 'thread_bind_cpu';
     };
     }; /* define-member */
@@ -150,12 +155,27 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-array = '[]';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      func-mem-desc-line = '43';
+      func-mem-desc-line = '45';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+main function.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-         cpu_limit.c  
+    <pre>
+    Set cpu utilization of the core specified. 
+
+    Example:
+                cpu_limit
+                cpu_limit [cpu] percentage 
+    </pre>
+    @param[in]  cpu(optionnal)  The cpu number.
+    @param[in]  percentage      The cpu's utilization percentage.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  Input paremeters error.
+    @retval -2  Thread error.
+    @retval -3  Run set_cpuset error.
+    @see        
+    @attention    
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'db/d28/cpu__limit_8h_1a2e566c01e0d23dd5d29a1c30fe795c5e';
@@ -163,18 +183,18 @@ _EnD_oF_dEf_TeXt_;
         func-mem-ref-name = 'CPU_UTILIZATION::cpu';
     };
       func-mem-referenceto = {
-        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8faffd713a737a2c969648f7879ec747';
-        func-mem-ref-line = '287';
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a6dcadcbc9ccbe62979354f3c0e44b895';
+        func-mem-ref-line = '203';
         func-mem-ref-name = 'multi_threads_run';
     };
       func-mem-referenceto = {
-        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1aa4f72fe91bc897f56287aca36a912aec';
-        func-mem-ref-line = '339';
-        func-mem-ref-name = 'set_cpu_percentage';
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8ab8c374c65d471fb49571b082802a3b';
+        func-mem-ref-line = '415';
+        func-mem-ref-name = 'set_cpuset';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1aace1d33c3bcb8de79f41e78288cf6c0a';
-        func-mem-ref-line = '443';
+        func-mem-ref-line = '619';
         func-mem-ref-name = 'usages';
     };
       func-mem-referenceto = {
@@ -199,7 +219,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'arg';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      func-mem-desc-line = '227';
+      func-mem-desc-line = '141';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Bind a thread with a cpu and this thread will spend some utilization 
     more of the very one.
@@ -231,13 +251,13 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8faffd713a737a2c969648f7879ec747';
-        func-mem-ref-line = '287';
+        func-mem-ref-line = '203';
         func-mem-ref-name = 'multi_threads_run';
     };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'd5/d4e/cpu__limit_8c_1a8faffd713a737a2c969648f7879ec747';
+      func-mem-id   = 'd5/d4e/cpu__limit_8c_1a6dcadcbc9ccbe62979354f3c0e44b895';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -248,7 +268,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
 cpu_utilization *
 _EnD_oF_dEf_TeXt_;
-        func-mem-param-declname = 'cpu_args';
+        func-mem-param-declname = 'cpu_args_origin';
       }; /*        func-mem-param--param */
       func-mem-param = {
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
@@ -257,7 +277,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'size';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      func-mem-desc-line = '288';
+      func-mem-desc-line = '204';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Spend specified utilization percentages to several cpus.
 _EnD_oF_dEf_TeXt_;
@@ -282,13 +302,18 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1ab861afb25d3e949b511b54f1a7c2027e';
-        func-mem-ref-line = '226';
+        func-mem-ref-line = '140';
         func-mem-ref-name = 'thread_bind_cpu';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '42';
+        func-mem-ref-line = '44';
         func-mem-ref-name = 'main';
+    };
+      func-mem-referenceby = {
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8ab8c374c65d471fb49571b082802a3b';
+        func-mem-ref-line = '415';
+        func-mem-ref-name = 'set_cpuset';
     };
     }; /* func-member */
     func-member = {
@@ -313,7 +338,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'size';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      func-mem-desc-line = '340';
+      func-mem-desc-line = '268';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set cpu utilization percentage to a same value or different ones.
 _EnD_oF_dEf_TeXt_;
@@ -337,13 +362,13 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a068c17be2ba9ba7412376cead7647cba';
-        func-mem-ref-line = '408';
+        func-mem-ref-line = '353';
         func-mem-ref-name = 'get_percentage_value';
     };
       func-mem-referenceby = {
-        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '42';
-        func-mem-ref-name = 'main';
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8ab8c374c65d471fb49571b082802a3b';
+        func-mem-ref-line = '415';
+        func-mem-ref-name = 'set_cpuset';
     };
     }; /* func-member */
     func-member = {
@@ -362,7 +387,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'p_percentage';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      func-mem-desc-line = '409';
+      func-mem-desc-line = '354';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get cpu utilization percentage from stdin.
 _EnD_oF_dEf_TeXt_;
@@ -386,8 +411,65 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1abb38470ceec35d03c445e06f8b97a798';
-        func-mem-ref-line = '339';
+        func-mem-ref-line = '267';
         func-mem-ref-name = 'set_cpu_percentage';
+    };
+    }; /* func-member */
+    func-member = {
+      func-mem-kind = 'function';
+      func-mem-id   = 'd5/d4e/cpu__limit_8c_1a8ab8c374c65d471fb49571b082802a3b';
+      func-mem-virt = normal;
+      func-mem-prot = public;
+      func-mem-type = <<_EnD_oF_dEf_TeXt_
+int
+_EnD_oF_dEf_TeXt_;
+      func-mem-name = 'set_cpuset';
+      func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
+      func-mem-desc-line = '416';
+      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Choose cpus specified, and spend some cpu utilization 
+    on them.
+_EnD_oF_dEf_TeXt_;
+      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+    <pre>
+    There are two choises, one is range from m to n(such as:0-1), 
+    the other is cpuset separated by '.'(such as 0.2.4).
+    Example:
+                set_cpuset
+    </pre>
+    @param      none.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  Thread error.
+    @retval -2  Stdin error.
+    @retval -3  Cpuset error.
+    @see        
+    @attention    
+_EnD_oF_dEf_TeXt_;
+      func-mem-referenceto = {
+        func-mem-ref-id = 'db/d28/cpu__limit_8h_1a2e566c01e0d23dd5d29a1c30fe795c5e';
+        func-mem-ref-line = '18';
+        func-mem-ref-name = 'CPU_UTILIZATION::cpu';
+    };
+      func-mem-referenceto = {
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a6dcadcbc9ccbe62979354f3c0e44b895';
+        func-mem-ref-line = '203';
+        func-mem-ref-name = 'multi_threads_run';
+    };
+      func-mem-referenceto = {
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1aa4f72fe91bc897f56287aca36a912aec';
+        func-mem-ref-line = '267';
+        func-mem-ref-name = 'set_cpu_percentage';
+    };
+      func-mem-referenceto = {
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1aace1d33c3bcb8de79f41e78288cf6c0a';
+        func-mem-ref-line = '619';
+        func-mem-ref-name = 'usages';
+    };
+      func-mem-referenceby = {
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
+        func-mem-ref-line = '44';
+        func-mem-ref-name = 'main';
     };
     }; /* func-member */
     func-member = {
@@ -400,7 +482,7 @@ void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'usages';
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      func-mem-desc-line = '444';
+      func-mem-desc-line = '620';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -409,8 +491,13 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '42';
+        func-mem-ref-line = '44';
         func-mem-ref-name = 'main';
+    };
+      func-mem-referenceby = {
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8ab8c374c65d471fb49571b082802a3b';
+        func-mem-ref-line = '415';
+        func-mem-ref-name = 'set_cpuset';
     };
     }; /* func-member */
     };
@@ -505,7 +592,7 @@ _EnD_oF_dEf_TeXt_;
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8faffd713a737a2c969648f7879ec747';
-        func-mem-ref-line = '287';
+        func-mem-ref-line = '203';
         func-mem-ref-name = 'multi_threads_run';
     };
     }; /* func-member */
@@ -523,6 +610,7 @@ _EnD_oF_dEf_TeXt_;
 cpu_utilization *
 _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'cpu_args';
+        func-mem-param-defname = 'cpu_args_origin';
       }; /*        func-mem-param--param */
       func-mem-param = {
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
@@ -556,13 +644,18 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1ab861afb25d3e949b511b54f1a7c2027e';
-        func-mem-ref-line = '226';
+        func-mem-ref-line = '140';
         func-mem-ref-name = 'thread_bind_cpu';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '42';
+        func-mem-ref-line = '44';
         func-mem-ref-name = 'main';
+    };
+      func-mem-referenceby = {
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8ab8c374c65d471fb49571b082802a3b';
+        func-mem-ref-line = '415';
+        func-mem-ref-name = 'set_cpuset';
     };
     }; /* func-member */
     func-member = {
@@ -605,7 +698,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1abb38470ceec35d03c445e06f8b97a798';
-        func-mem-ref-line = '339';
+        func-mem-ref-line = '267';
         func-mem-ref-name = 'set_cpu_percentage';
     };
     }; /* func-member */
@@ -656,12 +749,69 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a068c17be2ba9ba7412376cead7647cba';
-        func-mem-ref-line = '408';
+        func-mem-ref-line = '353';
         func-mem-ref-name = 'get_percentage_value';
     };
       func-mem-referenceby = {
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8ab8c374c65d471fb49571b082802a3b';
+        func-mem-ref-line = '415';
+        func-mem-ref-name = 'set_cpuset';
+    };
+    }; /* func-member */
+    func-member = {
+      func-mem-kind = 'function';
+      func-mem-id   = 'db/d28/cpu__limit_8h_1a8ab8c374c65d471fb49571b082802a3b';
+      func-mem-virt = normal;
+      func-mem-prot = public;
+      func-mem-type = <<_EnD_oF_dEf_TeXt_
+int
+_EnD_oF_dEf_TeXt_;
+      func-mem-name = 'set_cpuset';
+      func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
+      func-mem-desc-line = '30';
+      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Choose cpus specified, and spend some cpu utilization 
+    on them.
+_EnD_oF_dEf_TeXt_;
+      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+    <pre>
+    There are two choises, one is range from m to n(such as:0-1), 
+    the other is cpuset separated by '.'(such as 0.2.4).
+    Example:
+                set_cpuset
+    </pre>
+    @param      none.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  Thread error.
+    @retval -2  Stdin error.
+    @retval -3  Cpuset error.
+    @see        
+    @attention    
+_EnD_oF_dEf_TeXt_;
+      func-mem-referenceto = {
+        func-mem-ref-id = 'db/d28/cpu__limit_8h_1a2e566c01e0d23dd5d29a1c30fe795c5e';
+        func-mem-ref-line = '18';
+        func-mem-ref-name = 'CPU_UTILIZATION::cpu';
+    };
+      func-mem-referenceto = {
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a6dcadcbc9ccbe62979354f3c0e44b895';
+        func-mem-ref-line = '203';
+        func-mem-ref-name = 'multi_threads_run';
+    };
+      func-mem-referenceto = {
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1aa4f72fe91bc897f56287aca36a912aec';
+        func-mem-ref-line = '267';
+        func-mem-ref-name = 'set_cpu_percentage';
+    };
+      func-mem-referenceto = {
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1aace1d33c3bcb8de79f41e78288cf6c0a';
+        func-mem-ref-line = '619';
+        func-mem-ref-name = 'usages';
+    };
+      func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '42';
+        func-mem-ref-line = '44';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -675,7 +825,7 @@ void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'usages';
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      func-mem-desc-line = '30';
+      func-mem-desc-line = '31';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -684,8 +834,13 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '42';
+        func-mem-ref-line = '44';
         func-mem-ref-name = 'main';
+    };
+      func-mem-referenceby = {
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8ab8c374c65d471fb49571b082802a3b';
+        func-mem-ref-line = '415';
+        func-mem-ref-name = 'set_cpuset';
     };
     }; /* func-member */
     };

@@ -1,3 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$d5/d4e/cpu__limit_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="117,5,168,35"/>
+<area shape="rect" id="node3" href="$d5/d4e/cpu__limit_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main function." alt="" coords="253,5,304,35"/>
+<area shape="rect" id="node5" href="$db/d28/cpu__limit_8h.html#a8ab8c374c65d471fb49571b082802a3b" title="Choose cpus specified, and spend some cpu utilization on them." alt="" coords="119,31,204,60"/>
 </map>

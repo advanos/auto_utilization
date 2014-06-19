@@ -27,4 +27,5 @@ int get_percentage_value(double * p_percentage);
 
 int set_cpu_percentage(cpu_utilization * cpu_args, int size);
 
+int set_cpuset();
 void usages();

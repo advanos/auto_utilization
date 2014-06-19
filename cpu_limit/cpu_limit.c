@@ -23,157 +23,50 @@
 # include "cpu_limit.h"
 # define total 10000
 # define micro 1000000
-//////////////////////////////////////////////////////////////////////////
-///      cpu_limit.c
-// Version:      0.1
-// Date:         2014/06/12
-// Author:       Kun He
-// Email:        kun.he@cs2c.com.cn
-// Summary:      Set cpu utilization of the core specified. 
-// Usage:        cpu_limit (int)cpu_num  (float) cpu_utilization percentage.
-// Para1:        int cpu_num: The number of the core.
-// Para2:        float cpu_num: The percentage of the cpu_utilization.
-// Return:       Zero for succeed, nonezero for faild.
-// Copyright:    China Standard Software Co., Ltd.
-// History:     
-//               Version 0.1, 2014/06/12
-//               - The first one.
-// ------------------------------------------------------------------------
+/// @brief  main function.
+/// 
+/// <pre>
+/// Set cpu utilization of the core specified. 
+/// 
+/// Example:
+///             cpu_limit
+///             cpu_limit [cpu] percentage 
+/// </pre>
+/// @param[in]  cpu(optionnal)  The cpu number.
+/// @param[in]  percentage      The cpu's utilization percentage.
+/// @return     Zero for success, none-zero for failures. 
+/// @retval  0  Successful.
+/// @retval -1  Input paremeters error.
+/// @retval -2  Thread error.
+/// @retval -3  Run set_cpuset error.
+/// @see        
+/// @attention  
 int main(int argc, char *argv[])
 {
-    /// argc = 1, all by yourself.
+    // argc = 1, all by yourself.
     if (1 == argc)
     {
-        printf("Please input the cpu set, such as:\n0-3\nor:0.2.4\n");
-        char * cpuset = (char *)malloc(128 * sizeof(char));
-        int size = -1;
-        cpu_utilization * cpu_args_origin = NULL;
-        cpu_utilization * cpu_args = NULL;
-        scanf("%s", cpuset);
-        getchar();
-        /// range by m to n(such as: m-n).
-        if (strstr(cpuset, "-") != NULL)
+        if(set_cpuset())
         {
-            int cpu_begin = -1;
-            int cpu_end = -1;
-            char * result = strtok(cpuset, "-");
-            if(result != NULL)
-            {
-                cpu_begin = atoi(result);
-                result = strtok(NULL, "-");
-                if (result != NULL)
-                {
-                    cpu_end = atoi(result);
-                    if ((cpu_begin < 0) || (cpu_begin >= sysconf(_SC_NPROCESSORS_ONLN)) || (cpu_end < 0) || (cpu_end > sysconf(_SC_NPROCESSORS_ONLN)) || cpu_begin >= cpu_end)
-                    {
-                        usages();
-                        free(cpuset);
-                        cpuset = NULL;
-                        return -1;
-                    }
-                    size = cpu_end - cpu_begin + 1;
-                    cpu_args_origin = (cpu_utilization *)malloc(size * sizeof(cpu_utilization));
-                    cpu_args = cpu_args_origin;
-                    int i = 0;
-                    for (i = cpu_begin; i <= cpu_end; i++)
-                    {
-                        (*cpu_args).cpu = i;
-                        cpu_args++;
-                    }
-                    /// set cpu_args_origin.utilization
-                    set_cpu_percentage(cpu_args_origin, size);
-                }
-            }
+            return -3;
         }
-        /// cpuset by '.', such as: a.b.c
-        else if (strstr(cpuset, ".") != NULL)
-        {
-            size = 1;
-            char * tmp_cpuset = cpuset;
-            int i = 0;
-            /// get size of the cpuset.
-            while ('\0' != *(tmp_cpuset + i))
-            {
-                if ('.' == *(tmp_cpuset + i))
-                {
-                    size++;
-                }
-                i++;
-            }
-            /// malloc cpu_args_origin
-            cpu_args_origin = (cpu_utilization *)malloc(size * sizeof(cpu_utilization));
-            cpu_args = cpu_args_origin;
-            i = 0;
-            /// set cpu_args_origin.cpu
-            char * result = strtok(cpuset, ".");
-            if(result != NULL)
-            {
-                if ((atoi(result) < 0) || (atoi(result) >= sysconf(_SC_NPROCESSORS_ONLN)))
-                {
-                    usages();
-                    free(cpu_args_origin);
-                    cpu_args_origin = NULL;
-                    cpu_args = NULL;
-                    return -1;
-                }
-                else
-                {
-                    (*cpu_args).cpu = atoi(result);
-                    cpu_args++;
-                }
-                while(result != NULL)
-                {
-                    result = strtok(NULL, ".");
-                    if (NULL == result)
-                    {
-                        break;
-                    }
-                    if ((atoi(result) < 0) || (atoi(result) >= sysconf(_SC_NPROCESSORS_ONLN)))
-                    {
-                        usages();
-                        free(cpu_args_origin);
-                        cpu_args_origin = NULL;
-                        cpu_args = NULL;
-                        return -1;
-                    }
-                    else
-                    {
-                        (*cpu_args).cpu = atoi(result);
-                        cpu_args++;
-                    }
-                }
-            }
-            /// set cpu_args_origin.utilization
-            set_cpu_percentage(cpu_args_origin, size);
-        }
-        else
-        {
-            usages();
-            free(cpuset);
-            cpuset = NULL;
-            free(cpu_args_origin);
-            cpu_args = NULL;
-            cpu_args_origin = NULL;
-            return -1;
-        }
-        multi_threads_run(cpu_args_origin, size);
-        free(cpuset);
-        free(cpu_args_origin);
-        cpu_args = NULL;
-        cpu_args_origin = NULL;
-        cpuset = NULL;
     }
-    /// argc = 2, all cpu at a same utilization.
+    // argc = 2, all cpu at a same utilization.
     else if (2 == argc)
     {
+        // Check for input parameter.
         if ((atof(argv[1]) <= 0) || (atof(argv[1]) > 1.0))
         {
             usages();
             return -1;
         }
+
+        // Cpuset information, number and utilization percentage. 
         int size = (int)sysconf(_SC_NPROCESSORS_ONLN);
         cpu_utilization * cpu_args_origin = (cpu_utilization *)malloc(size * sizeof(cpu_utilization));
         cpu_utilization * cpu_args = cpu_args_origin;
+        
+        // Set cpu and utilization.
         int i = 0;
         for(i = 0; i < size; i++)
         {
@@ -181,26 +74,47 @@ int main(int argc, char *argv[])
             (*cpu_args).utilization = atof(argv[1]);
             cpu_args++;
         }
-        multi_threads_run(cpu_args_origin, size);
+        
+        // Run threads.
+        if(multi_threads_run(cpu_args_origin, size))
+        {
+            usages();
+            free(cpu_args_origin);
+            cpu_args = NULL;
+            cpu_args_origin = NULL;
+            return -2;
+        }
     }
-    /// argc = 3, an utilization of one cpu.
+    // argc = 3, an utilization of one cpu.
     else if ( 3 == argc)
     {
+        // Check for input parameter.
         if ((atoi(argv[1]) < 0) || (atoi(argv[1]) >= sysconf(_SC_NPROCESSORS_ONLN)) || (atof(argv[2]) <= 0) || (atof(argv[2]) > 1))
         {
             usages();
             return -1;
         }
+
+        // Set cpu and utilization.
         cpu_utilization cpu_arg = {0, 0};
         cpu_arg.cpu = atoi(argv[1]);
         cpu_arg.utilization = atof(argv[2]);
-        multi_threads_run(&cpu_arg, 1);
+
+        // Run threads.
+        if(multi_threads_run(&cpu_arg, 1))
+        {
+            usages();
+            return -2;
+        }
     }
+    // Input parameter error.
     else
     {
         usages();
         return -1;
     }
+
+    // Enforce wait.
     int tmp;
     scanf("%d", &tmp);
     getchar();
@@ -286,20 +200,23 @@ void * thread_bind_cpu(void * arg)
 /// @retval -2  Thread create faild.
 /// @see        thread_bind_cpu
 /// @attention  **DO NOT** input NULL for cpu_args or none-positive values for size.
-int multi_threads_run(cpu_utilization * cpu_args, int size)
+int multi_threads_run(cpu_utilization * cpu_args_origin, int size)
 {
     // Check for input parameters.
-    if((size <= 0) || (NULL == cpu_args))
+    if((size <= 0) || (NULL == cpu_args_origin))
     {
         return -1;
     }
     
+    // Cpuset information, number and utilization percentage. 
+    cpu_utilization * cpu_args = cpu_args_origin;
+    
     // Initialize threads' id and opt point.
     pthread_t * p_tid_origin = (pthread_t *)malloc(size * sizeof(pthread_t));
     pthread_t * p_tid = p_tid_origin;
-    int i = 0;
-
+    
     // Create one thread by one cpu.
+    int i = 0;
     for (i = 0; i < size; i++)
     {
         // Thread create faild.
@@ -349,23 +266,34 @@ int multi_threads_run(cpu_utilization * cpu_args, int size)
 /// @attention  **DO NOT** input NULL for cpu_args or none-positive values for size.
 int set_cpu_percentage(cpu_utilization * cpu_args_origin, int size)
 {
+    // Check for input parameters.
     if((size <= 0) || (NULL == cpu_args_origin))
     {
         return -1;
     }
+    
+    // Cpuset information, number and utilization percentage. 
     cpu_utilization * cpu_args = cpu_args_origin;
+
+    // Two choices.
     printf("Would you like to set all the cpus' utilization to a same value?\nY/N: ");
     char c_yon = '0';
     scanf("%c", &c_yon);
     getchar();
     int i = 0;
+
+    // All the cpus' utilization have a same value.
     if (('Y' == c_yon) || ('y' == c_yon))
     {
+        // Get percentage value.
         double percentage = 0;
+        // Getting percentage value faild.
         if(get_percentage_value(&percentage))
         {
            return -2;
         }
+
+        // Set all the cpus' utilization to a same value.
         for(i = 0; i < size; i++)
         {
             (*cpu_args).utilization = percentage;
@@ -374,28 +302,34 @@ int set_cpu_percentage(cpu_utilization * cpu_args_origin, int size)
         cpu_args = NULL;
         return 0;
     }
+    // Each cpu has a different utilization.
     else if (('N' == c_yon) || ('n' == c_yon))
     {
+        // Set every cpu's utilization.
         double percentage = 0;
         for(i = 0; i < size; i++)
         {
             printf("=============================================================\n");
             printf("Please input the utilization of cpu %d:\n", (*cpu_args).cpu);
+            // Getting percentage value faild.
             if(get_percentage_value(&percentage))
             {
                 return -2;
             }
+
+            // Set value.
             (*cpu_args).utilization = percentage;
             cpu_args++;
         }
         cpu_args = NULL;
         return 0;
-     }
-     else
-     {
-         printf("Bad decision!\n");
-         return -3;
-     } 
+    }
+    // Bad decision.
+    else
+    {
+        printf("Bad decision!\n");
+        return -3;
+    } 
 }
 
 /// @brief  Get cpu utilization percentage from stdin.
@@ -418,28 +352,38 @@ int set_cpu_percentage(cpu_utilization * cpu_args_origin, int size)
 /// @attention  **DO NOT** input NULL for p_percentage.
 int get_percentage_value(double * p_percentage)
 {
+    // Check for input parameters.
     if(NULL == p_percentage)
     {
         return -1;
     }
+
+    // Initialize percentage.
     char * percentage = (char *)malloc(128 * sizeof(char));
+
+    // State 0: try to get value.
     int while_flag = 0;
     while (0 == while_flag)
     {
         printf("Please input the utilization for the cpuset, the value must be between (0,1].\nSuch as: 0.25\nNotice: input 'EOF' for exit.\nPercentage: ");
         scanf("%s", percentage);
         getchar();
+
+        // Exit by "EOF".
         if ("EOF" == percentage)
         {
             free(percentage);
             percentage = NULL;
             return -2; 
         }
+
+        // Illegal value.
         if ((atof(percentage) <= 0) || (atof(percentage) > 1))
         {
             printf("Percentage illegal. Please retry.\n");
             continue;
         }
+        // State 1: Have got the value.
         else
         {
             while_flag = 1;
@@ -449,6 +393,227 @@ int get_percentage_value(double * p_percentage)
             return 0;
         }
     }
+}
+
+/// @brief      Choose cpus specified, and spend some cpu utilization 
+/// on them.
+/// 
+/// <pre>
+/// There are two choises, one is range from m to n(such as:0-1), 
+/// the other is cpuset separated by '.'(such as 0.2.4).
+/// Example:
+///             set_cpuset
+/// </pre>
+/// @param      none.
+/// @return     Zero for success, none-zero for failures. 
+/// @retval  0  Successful.
+/// @retval -1  Thread error.
+/// @retval -2  Stdin error.
+/// @retval -3  Cpuset error.
+/// @see        
+/// @attention  
+int set_cpuset()
+{
+    // Two choises, one is range from m to n(such as:0-1), 
+    // the other is cpuset separated by '.'(such as 0.2.4).
+    printf("Please input the cpu set, such as:\n0-3\nor:0.2.4\n");
+    char * cpuset = (char *)malloc(128 * sizeof(char));
+    int size = -1;
+    cpu_utilization * cpu_args_origin = NULL;
+    cpu_utilization * cpu_args = NULL;
+    scanf("%s", cpuset);
+    getchar();
+    // range from m to n(such as: 0-1).
+    if (strstr(cpuset, "-") != NULL)
+    {
+        int cpu_begin = -1;
+        int cpu_end = -1;
+        // Get begin and end cpu numbers.
+        char * result = strtok(cpuset, "-");
+
+        // Stdin error.
+        if(NULL == result)
+        {
+            usages();
+            free(cpuset);
+            cpuset = NULL;
+            return -2;
+        }
+
+        // Get begin cpu number.
+        cpu_begin = atoi(result);
+        result = strtok(NULL, "-");
+
+        // Stdin error.
+        if(NULL == result)
+        {
+            usages();
+            free(cpuset);
+            cpuset = NULL;
+            return -2;
+        }
+            
+        // Get end cpu number.
+        cpu_end = atoi(result);
+
+        // Check for begin and end. 
+        if ((cpu_begin < 0) || (cpu_begin >= sysconf(_SC_NPROCESSORS_ONLN)) || (cpu_end < 0) || (cpu_end > sysconf(_SC_NPROCESSORS_ONLN)) || cpu_begin >= cpu_end)
+        {
+            usages();
+            free(cpuset);
+            cpuset = NULL;
+            return -2;
+        }
+            
+        // Get size of the cpuset.
+        size = cpu_end - cpu_begin + 1;
+
+        // Cpuset information, number and utilization percentage. 
+        cpu_args_origin = (cpu_utilization *)malloc(size * sizeof(cpu_utilization));
+        cpu_args = cpu_args_origin;
+            
+        // Set cpu of cpu_args.
+        int i = 0;
+        for (i = cpu_begin; i <= cpu_end; i++)
+        {
+            (*cpu_args).cpu = i;
+            cpu_args++;
+        }
+
+        // set utilization of cpu_args.
+        if(set_cpu_percentage(cpu_args_origin, size))
+        {
+            usages();
+            free(cpuset);
+            free(cpu_args_origin);
+            cpu_args_origin = NULL;
+            cpu_args = NULL;
+            cpuset = NULL;
+            return -3;
+        }
+    }
+    // cpuset separated by '.'(such as 0.2.4).
+    else if (strstr(cpuset, ".") != NULL)
+    {
+        size = 1;
+        char * tmp_cpuset = cpuset;
+        int i = 0;
+        // get size of the cpuset.
+        while ('\0' != *(tmp_cpuset + i))
+        {
+            if ('.' == *(tmp_cpuset + i))
+            {
+                size++;
+            }
+            i++;
+        }
+
+        // Size error.
+        if(size < 2)
+        {
+            free(cpuset);
+            cpuset = NULL;
+            tmp_cpuset = NULL;
+            return -2;
+        }
+        
+        // Cpuset information, number and utilization percentage. 
+        cpu_args_origin = (cpu_utilization *)malloc(size * sizeof(cpu_utilization));
+        cpu_args = cpu_args_origin;
+           
+        // Set cpu of cpu_args.
+        i = 0;
+        char * result = strtok(cpuset, ".");
+            
+        // Check for the percentage.
+        if ((atoi(result) < 0) || (atoi(result) >= sysconf(_SC_NPROCESSORS_ONLN)))
+        {
+            usages();
+            free(cpu_args_origin);
+            free(cpuset);
+            cpuset = NULL;
+            tmp_cpuset = NULL;
+            cpu_args_origin = NULL;
+            cpu_args = NULL;
+            return -2;
+        }
+        // Set first cpu of cpu_args.
+        else
+        {
+            (*cpu_args).cpu = atoi(result);
+            cpu_args++;
+        }
+        // Set the other cpu[s] of cpu_args.
+        while(result != NULL)
+        {
+            result = strtok(NULL, ".");
+            if (NULL == result)
+            {
+                break;
+            }
+
+            // Check for the percentage.
+            if ((atoi(result) < 0) || (atoi(result) >= sysconf(_SC_NPROCESSORS_ONLN)))
+            {
+                usages();
+                free(cpu_args_origin);
+                free(cpuset);
+                cpuset = NULL;
+                tmp_cpuset = NULL;
+                cpu_args_origin = NULL;
+                cpu_args = NULL;
+                return -2;
+            }
+            // Set cpu of cpu_args.
+            else
+            {
+                (*cpu_args).cpu = atoi(result);
+                cpu_args++;
+            }
+        }
+
+        // set utilization of cpu_args.
+        if(set_cpu_percentage(cpu_args_origin, size))
+        {
+            usages();
+            free(cpuset);
+            free(cpu_args_origin);
+            cpu_args_origin = NULL;
+            cpu_args = NULL;
+            cpuset = NULL;
+            return -3;
+        }
+    }
+    // Stdin error.
+    else
+    {
+        usages();
+        free(cpuset);
+        cpuset = NULL;
+        free(cpu_args_origin);
+        cpu_args = NULL;
+        cpu_args_origin = NULL;
+        return -2;
+    }
+ 
+    // Run threads. 
+    if(multi_threads_run(cpu_args_origin, size))
+    {
+        usages();
+        free(cpuset);
+        cpuset = NULL;
+        free(cpu_args_origin);
+        cpu_args = NULL;
+        cpu_args_origin = NULL;
+        return -1;
+    }
+
+    // Successful.
+    free(cpuset);
+    free(cpu_args_origin);
+    cpu_args = NULL;
+    cpu_args_origin = NULL;
+    cpuset = NULL;
 }
 
 void usages()
