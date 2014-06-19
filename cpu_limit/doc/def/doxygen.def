@@ -14,7 +14,7 @@ int
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'cpu';
       sec-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      sec-mem-desc-line = '16';
+      sec-mem-desc-line = '18';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -23,7 +23,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        sec-mem-ref-line = '28';
+        sec-mem-ref-line = '42';
         sec-mem-ref-name = 'main';
     };
     }; /* sec-member */
@@ -37,7 +37,7 @@ double
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'utilization';
       sec-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      sec-mem-desc-line = '17';
+      sec-mem-desc-line = '19';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -46,13 +46,13 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceby = {
         sec-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        sec-mem-ref-line = '28';
+        sec-mem-ref-line = '42';
         sec-mem-ref-name = 'main';
     };
     }; /* sec-member */
   }; /* cp-section */
   cp-filename  = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-  cp-fileline  = '15';
+  cp-fileline  = '17';
   cp-briefdesc = <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -71,7 +71,7 @@ file = {
       define-mem-prot = public;
       define-mem-name = '__USE_GNU';
       define-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      define-mem-desc-line = '22';
+      define-mem-desc-line = '20';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -89,7 +89,7 @@ _EnD_oF_dEf_TeXt_;
 10000
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      define-mem-desc-line = '26';
+      define-mem-desc-line = '24';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -98,7 +98,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a3d14434a76d88b531b6d4ab124703968';
-        define-mem-ref-line = '196';
+        define-mem-ref-line = '226';
         define-mem-ref-name = 'thread_bind_cpu';
     };
     }; /* define-member */
@@ -112,7 +112,7 @@ _EnD_oF_dEf_TeXt_;
 1000000
 _EnD_oF_dEf_TeXt_;
       define-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      define-mem-desc-line = '27';
+      define-mem-desc-line = '25';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -121,7 +121,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       define-mem-referenceby = {
         define-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a3d14434a76d88b531b6d4ab124703968';
-        define-mem-ref-line = '196';
+        define-mem-ref-line = '226';
         define-mem-ref-name = 'thread_bind_cpu';
     };
     }; /* define-member */
@@ -150,36 +150,36 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-array = '[]';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      func-mem-desc-line = '29';
+      func-mem-desc-line = '43';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+         cpu_limit.c  
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'db/d28/cpu__limit_8h_1a2e566c01e0d23dd5d29a1c30fe795c5e';
-        func-mem-ref-line = '16';
+        func-mem-ref-line = '18';
         func-mem-ref-name = 'CPU_UTILIZATION::cpu';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8faffd713a737a2c969648f7879ec747';
-        func-mem-ref-line = '224';
+        func-mem-ref-line = '287';
         func-mem-ref-name = 'multi_threads_run';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1aa4f72fe91bc897f56287aca36a912aec';
-        func-mem-ref-line = '252';
+        func-mem-ref-line = '339';
         func-mem-ref-name = 'set_cpu_percentage';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1aace1d33c3bcb8de79f41e78288cf6c0a';
-        func-mem-ref-line = '325';
+        func-mem-ref-line = '443';
         func-mem-ref-name = 'usages';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'db/d28/cpu__limit_8h_1aa73d1491d59d6f4c1ef68b0d4fe404d5';
-        func-mem-ref-line = '17';
+        func-mem-ref-line = '19';
         func-mem-ref-name = 'CPU_UTILIZATION::utilization';
     };
     }; /* func-member */
@@ -199,38 +199,39 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'arg';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      func-mem-desc-line = '197';
+      func-mem-desc-line = '227';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Bind a thread with a utilization percentage.
+Bind a thread with a cpu and this thread will spend some utilization 
+    more of the very one.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
     <pre>
     This function should be called by pthread_create. First define 
     a cpu_utilization point, and convert it to void*.
     Example:
-        pthread_t * p_tid; 
-        cpu_utilization * cpu_args;
-        pthread_create(p_tid, NULL, thread_bind_cpu, (void*)(cpu_args));
+                pthread_t * p_tid; 
+                cpu_utilization * cpu_args;
+                pthread_create(p_tid, NULL, thread_bind_cpu, (void*)(cpu_args));
     </pre>
-    @param[in] arg void *  The cpu number and it's utilization percentage.
-    @return void *
-    @retval N/A
-    @see
-    @notice  
+    @param[in]  cpu_args The cpu number and it's utilization percentage.
+    @return     void *
+    @retval     N/A
+    @see        multi_threads_run pthread_create
+    @attention  Should be called by pthread_create.  
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1abcd675b2538e3bf65d3cfe43fce2753a';
-        func-mem-ref-line = '27';
+        func-mem-ref-line = '25';
         func-mem-ref-name = 'micro';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0f905d3903a7c8ea53ab56ac0f8df0a7';
-        func-mem-ref-line = '26';
+        func-mem-ref-line = '24';
         func-mem-ref-name = 'total';
     };
       func-mem-referenceby = {
-        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1ac191202581ea93acd1a54d8545a7fb77';
-        func-mem-ref-line = '224';
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8faffd713a737a2c969648f7879ec747';
+        func-mem-ref-line = '287';
         func-mem-ref-name = 'multi_threads_run';
     };
     }; /* func-member */
@@ -256,21 +257,37 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'size';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      func-mem-desc-line = '225';
+      func-mem-desc-line = '288';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Spend specified utilization percentages to several cpus.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+    <pre>
+    This function calls pthread_create for a cpuset and every thread calls a
+    thread_bind_cpu function. Then all the cpus in the cpuset would get some 
+    specified cpu utilization more with them.
+    Example:
+                int size; 
+                cpu_utilization * cpu_args;
+                multi_threads_run(cpu_args, size);
+    </pre>
+    @param[in]  cpu_args The cpu number and it's utilization percentage.
+    @param[in]  size     The number of the cpuset's members.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  Input paremeters error.
+    @retval -2  Thread create faild.
+    @see        thread_bind_cpu
+    @attention  **DO NOT** input NULL for cpu_args or none-positive values for size.  
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1ab861afb25d3e949b511b54f1a7c2027e';
-        func-mem-ref-line = '196';
+        func-mem-ref-line = '226';
         func-mem-ref-name = 'thread_bind_cpu';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '28';
+        func-mem-ref-line = '42';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -296,21 +313,36 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'size';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      func-mem-desc-line = '253';
+      func-mem-desc-line = '340';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Set cpu utilization percentage to a same value or different ones.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+    <pre>
+    This function provice two options to set cpu utilization percentage. One 
+    is set all the cpus' utilization to a same value, the other one is set 
+    different values for every cpu.
+    Example:
+                int size = 2;               set_cpu_percentage(args, size);
+    </pre>
+    @param[in]  cpu_args The cpu number and it's utilization percentage.
+    @param[in]  size     The number of the cpuset's members.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  Input paremeters error.
+    @retval -2  Call get_percentage_value faild.
+    @retval -3  Wrong decision.
+    @see        get_percentage_value
+    @attention  **DO NOT** input NULL for cpu_args or none-positive values for size.  
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a068c17be2ba9ba7412376cead7647cba';
-        func-mem-ref-line = '294';
+        func-mem-ref-line = '408';
         func-mem-ref-name = 'get_percentage_value';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '28';
+        func-mem-ref-line = '42';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -330,16 +362,31 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'p_percentage';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      func-mem-desc-line = '295';
+      func-mem-desc-line = '409';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Get cpu utilization percentage from stdin.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+    <pre>
+    This function get cpu utilization percentage from stdin, the value 
+    transfers by point(double *). When your inputs have any mistake, you
+    can continue, except inputting 'EOF'.
+    Example:
+                double percentage = 0;
+                get_percentage_value(&percentage);
+    </pre>
+    @param[out] p_percentage    The percentage got from stdin will transmit by
+    this point.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  Input paremeters error.
+    @retval -2  Exit from 'EOF'.
+    @see        set_cpu_percentage
+    @attention  **DO NOT** input NULL for p_percentage.  
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
-        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1aa0233ba12fac6902cc746837a6805eb5';
-        func-mem-ref-line = '252';
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1abb38470ceec35d03c445e06f8b97a798';
+        func-mem-ref-line = '339';
         func-mem-ref-name = 'set_cpu_percentage';
     };
     }; /* func-member */
@@ -353,7 +400,7 @@ void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'usages';
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
-      func-mem-desc-line = '326';
+      func-mem-desc-line = '444';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -362,7 +409,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '28';
+        func-mem-ref-line = '42';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -370,10 +417,19 @@ _EnD_oF_dEf_TeXt_;
   file-full-name  = '/root/CPU_LIMIT/cpu_limit/cpu_limit.c';
   file-first-line = '1';
   file-briefdesc  = <<_EnD_oF_dEf_TeXt_
-
+Spend specified cpu utilization percentage on the cpuset.
 _EnD_oF_dEf_TeXt_;
   file-documentation = <<_EnD_oF_dEf_TeXt_
+    <pre>
+    COPYRIGHT NOTICE
+    Copyright(c) 2014, CS2C
+    All rights reserved.
+    </pre>
 
+    
+    @version    0.1
+    @author     Kun He(kun.he@cs2c.com.cn)
+    @date       2014.06.19
 _EnD_oF_dEf_TeXt_;
 }; /* file */
 file = {
@@ -390,7 +446,7 @@ struct CPU_UTILIZATION
 _EnD_oF_dEf_TeXt_;
       typedef-mem-name = 'cpu_utilization';
       typedef-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      typedef-mem-desc-line = '18';
+      typedef-mem-desc-line = '20';
       typedef-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -414,46 +470,48 @@ _EnD_oF_dEf_TeXt_;
 void *
 _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'cpu_args';
+        func-mem-param-defname = 'arg';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      func-mem-desc-line = '34';
+      func-mem-desc-line = '22';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Bind a thread with a utilization percentage.
+Bind a thread with a cpu and this thread will spend some utilization 
+    more of the very one.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
     <pre>
     This function should be called by pthread_create. First define 
     a cpu_utilization point, and convert it to void*.
     Example:
-        pthread_t * p_tid; 
-        cpu_utilization * cpu_args;
-        pthread_create(p_tid, NULL, thread_bind_cpu, (void*)(cpu_args));
+                pthread_t * p_tid; 
+                cpu_utilization * cpu_args;
+                pthread_create(p_tid, NULL, thread_bind_cpu, (void*)(cpu_args));
     </pre>
-    @param[in] arg void *  The cpu number and it's utilization percentage.
-    @return void *
-    @retval N/A
-    @see
-    @notice  
+    @param[in]  cpu_args The cpu number and it's utilization percentage.
+    @return     void *
+    @retval     N/A
+    @see        multi_threads_run pthread_create
+    @attention  Should be called by pthread_create.  
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1abcd675b2538e3bf65d3cfe43fce2753a';
-        func-mem-ref-line = '27';
+        func-mem-ref-line = '25';
         func-mem-ref-name = 'micro';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0f905d3903a7c8ea53ab56ac0f8df0a7';
-        func-mem-ref-line = '26';
+        func-mem-ref-line = '24';
         func-mem-ref-name = 'total';
     };
       func-mem-referenceby = {
-        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1ac191202581ea93acd1a54d8545a7fb77';
-        func-mem-ref-line = '224';
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a8faffd713a737a2c969648f7879ec747';
+        func-mem-ref-line = '287';
         func-mem-ref-name = 'multi_threads_run';
     };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'db/d28/cpu__limit_8h_1ac191202581ea93acd1a54d8545a7fb77';
+      func-mem-id   = 'db/d28/cpu__limit_8h_1a8faffd713a737a2c969648f7879ec747';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -464,34 +522,52 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
 cpu_utilization *
 _EnD_oF_dEf_TeXt_;
+        func-mem-param-declname = 'cpu_args';
       }; /*        func-mem-param--param */
       func-mem-param = {
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
 int
 _EnD_oF_dEf_TeXt_;
+        func-mem-param-declname = 'size';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      func-mem-desc-line = '35';
+      func-mem-desc-line = '24';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Spend specified utilization percentages to several cpus.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+    <pre>
+    This function calls pthread_create for a cpuset and every thread calls a
+    thread_bind_cpu function. Then all the cpus in the cpuset would get some 
+    specified cpu utilization more with them.
+    Example:
+                int size; 
+                cpu_utilization * cpu_args;
+                multi_threads_run(cpu_args, size);
+    </pre>
+    @param[in]  cpu_args The cpu number and it's utilization percentage.
+    @param[in]  size     The number of the cpuset's members.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  Input paremeters error.
+    @retval -2  Thread create faild.
+    @see        thread_bind_cpu
+    @attention  **DO NOT** input NULL for cpu_args or none-positive values for size.  
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1ab861afb25d3e949b511b54f1a7c2027e';
-        func-mem-ref-line = '196';
+        func-mem-ref-line = '226';
         func-mem-ref-name = 'thread_bind_cpu';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '28';
+        func-mem-ref-line = '42';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'db/d28/cpu__limit_8h_1a7ae86d171cec9b996291c06992710c2a';
+      func-mem-id   = 'db/d28/cpu__limit_8h_1a068c17be2ba9ba7412376cead7647cba';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -502,24 +578,40 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
 double *
 _EnD_oF_dEf_TeXt_;
+        func-mem-param-declname = 'p_percentage';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      func-mem-desc-line = '36';
+      func-mem-desc-line = '26';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Get cpu utilization percentage from stdin.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+    <pre>
+    This function get cpu utilization percentage from stdin, the value 
+    transfers by point(double *). When your inputs have any mistake, you
+    can continue, except inputting 'EOF'.
+    Example:
+                double percentage = 0;
+                get_percentage_value(&percentage);
+    </pre>
+    @param[out] p_percentage    The percentage got from stdin will transmit by
+    this point.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  Input paremeters error.
+    @retval -2  Exit from 'EOF'.
+    @see        set_cpu_percentage
+    @attention  **DO NOT** input NULL for p_percentage.  
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
-        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1aa0233ba12fac6902cc746837a6805eb5';
-        func-mem-ref-line = '252';
+        func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1abb38470ceec35d03c445e06f8b97a798';
+        func-mem-ref-line = '339';
         func-mem-ref-name = 'set_cpu_percentage';
     };
     }; /* func-member */
     func-member = {
       func-mem-kind = 'function';
-      func-mem-id   = 'db/d28/cpu__limit_8h_1aa0233ba12fac6902cc746837a6805eb5';
+      func-mem-id   = 'db/d28/cpu__limit_8h_1abb38470ceec35d03c445e06f8b97a798';
       func-mem-virt = normal;
       func-mem-prot = public;
       func-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -530,28 +622,46 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
 cpu_utilization *
 _EnD_oF_dEf_TeXt_;
+        func-mem-param-declname = 'cpu_args';
+        func-mem-param-defname = 'cpu_args_origin';
       }; /*        func-mem-param--param */
       func-mem-param = {
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
 int
 _EnD_oF_dEf_TeXt_;
+        func-mem-param-declname = 'size';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      func-mem-desc-line = '37';
+      func-mem-desc-line = '28';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Set cpu utilization percentage to a same value or different ones.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+    <pre>
+    This function provice two options to set cpu utilization percentage. One 
+    is set all the cpus' utilization to a same value, the other one is set 
+    different values for every cpu.
+    Example:
+                int size = 2;               set_cpu_percentage(args, size);
+    </pre>
+    @param[in]  cpu_args The cpu number and it's utilization percentage.
+    @param[in]  size     The number of the cpuset's members.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  Input paremeters error.
+    @retval -2  Call get_percentage_value faild.
+    @retval -3  Wrong decision.
+    @see        get_percentage_value
+    @attention  **DO NOT** input NULL for cpu_args or none-positive values for size.  
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a068c17be2ba9ba7412376cead7647cba';
-        func-mem-ref-line = '294';
+        func-mem-ref-line = '408';
         func-mem-ref-name = 'get_percentage_value';
     };
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '28';
+        func-mem-ref-line = '42';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -565,7 +675,7 @@ void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'usages';
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      func-mem-desc-line = '38';
+      func-mem-desc-line = '30';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -574,7 +684,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd5/d4e/cpu__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '28';
+        func-mem-ref-line = '42';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -585,9 +695,11 @@ _EnD_oF_dEf_TeXt_;
 Head file for cpu_limit.c.
 _EnD_oF_dEf_TeXt_;
   file-documentation = <<_EnD_oF_dEf_TeXt_
+    <pre>
     COPYRIGHT NOTICE
     Copyright(c) 2014, CS2C
     All rights reserved.
+    </pre>
 
     
     @version    0.1

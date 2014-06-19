@@ -1,5 +1,30 @@
-// ------------------------------------------------------------------------
-// Filename:     cpu_limit.c
+//////////////////////////////////////////////////////////////////////////
+/// <pre>
+/// COPYRIGHT NOTICE
+/// Copyright(c) 2014, CS2C
+/// All rights reserved.
+/// </pre>
+/// 
+/// @file       cpu_limit.c
+/// @brief      Spend specified cpu utilization percentage on the cpuset.
+///
+/// @version    0.1
+/// @author     Kun He(kun.he@cs2c.com.cn)
+/// @date       2014.06.19
+///
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <sys/time.h>
+# define __USE_GNU
+# include <sched.h>
+# include <pthread.h>
+# include "cpu_limit.h"
+# define total 10000
+# define micro 1000000
+//////////////////////////////////////////////////////////////////////////
+///      cpu_limit.c
 // Version:      0.1
 // Date:         2014/06/12
 // Author:       Kun He
@@ -14,17 +39,6 @@
 //               Version 0.1, 2014/06/12
 //               - The first one.
 // ------------------------------------------------------------------------
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <sys/time.h>
-# define __USE_GNU
-# include <sched.h>
-# include <pthread.h>
-# include "cpu_limit.h"
-# define total 10000
-# define micro 1000000
 int main(int argc, char *argv[])
 {
     /// argc = 1, all by yourself.
@@ -193,64 +207,152 @@ int main(int argc, char *argv[])
     return 0;
 }
 
+/// @brief  Bind a thread with a cpu and this thread will spend some utilization 
+/// more of the very one.
+/// 
+/// <pre>
+/// This function should be called by pthread_create. First define 
+/// a cpu_utilization point, and convert it to void*.
+/// Example:
+///             pthread_t * p_tid; 
+///             cpu_utilization * cpu_args;
+///             pthread_create(p_tid, NULL, thread_bind_cpu, (void*)(cpu_args));
+/// </pre>
+/// @param[in]  cpu_args The cpu number and it's utilization percentage.
+/// @return     void *
+/// @retval     N/A
+/// @see        multi_threads_run pthread_create
+/// @attention  Should be called by pthread_create.
 void * thread_bind_cpu(void * arg)
 {
-    cpu_utilization * arg_cpu = (cpu_utilization *)arg;
+    // Cpuset information, number and utilization percentage. 
+    cpu_utilization * arg_cpu = (cpu_utilization *)arg; 
+    
+    // Initialize cpu number and utilization.
     int cpu = (*arg_cpu).cpu;
     double percent = (*arg_cpu).utilization;
+    
+    // Set cpu busy and idle circle time.
     long busy = total * percent;
     long idle = total - busy;
+    
+    // Initialize timer.
     long start = 0;
     long stop = 0;
+    
+    // Define begin and end time.
     struct timeval begin, end;
+    
+    // Bind current thread to the specified cpu core.
     cpu_set_t mask;
     CPU_ZERO(&mask);
     CPU_SET(cpu, &mask);
     sched_setaffinity(0, sizeof(cpu_set_t), &mask);
+
+    // Total circle.
     while (1)
     {
+        // Initialize start and stop time.
         gettimeofday(&begin, NULL);
         start = begin.tv_sec * micro + begin.tv_usec;
         stop = start;
+        // Busy circle.
         while (stop - start <= busy)
         {
             gettimeofday(&end, NULL);
             stop = end.tv_sec * micro + end.tv_usec;
         }
+        // Idle circle.
         usleep(idle);
     }
 }
 
+/// @brief  Spend specified utilization percentages to several cpus.
+/// 
+/// <pre>
+/// This function calls pthread_create for a cpuset and every thread calls a
+/// thread_bind_cpu function. Then all the cpus in the cpuset would get some 
+/// specified cpu utilization more with them.
+/// Example:
+///             int size; 
+///             cpu_utilization * cpu_args;
+///             multi_threads_run(cpu_args, size);
+/// </pre>
+/// @param[in]  cpu_args The cpu number and it's utilization percentage.
+/// @param[in]  size     The number of the cpuset's members.
+/// @return     Zero for success, none-zero for failures. 
+/// @retval  0  Successful.
+/// @retval -1  Input paremeters error.
+/// @retval -2  Thread create faild.
+/// @see        thread_bind_cpu
+/// @attention  **DO NOT** input NULL for cpu_args or none-positive values for size.
 int multi_threads_run(cpu_utilization * cpu_args, int size)
 {
+    // Check for input parameters.
+    if((size <= 0) || (NULL == cpu_args))
+    {
+        return -1;
+    }
+    
+    // Initialize threads' id and opt point.
     pthread_t * p_tid_origin = (pthread_t *)malloc(size * sizeof(pthread_t));
     pthread_t * p_tid = p_tid_origin;
     int i = 0;
+
+    // Create one thread by one cpu.
     for (i = 0; i < size; i++)
     {
+        // Thread create faild.
         if (pthread_create(p_tid, NULL, thread_bind_cpu, (void *)(cpu_args)))
         {
             printf("Create thread faild.\n");
-            p_tid = NULL;
             free(p_tid_origin);
+            p_tid = NULL;
             p_tid_origin = NULL;
             return -2;
         }
+        // Thread create successfully.
         else
         {
+            // Point to next cpuset.
             p_tid++;
             cpu_args++;
         }
     }
-    printf("Cpus are busy now...\nPress '<Ctrl + C>' to end.");
-    p_tid = NULL;
+    // All the cpuset work.
+    printf("Cpus are busy now...\nPress any key to end.");
     free(p_tid_origin);
+    p_tid = NULL;
     p_tid_origin = NULL;
     return 0;
 }
 
+/// @brief  Set cpu utilization percentage to a same value or different ones.
+/// 
+/// <pre>
+/// This function provice two options to set cpu utilization percentage. One 
+/// is set all the cpus' utilization to a same value, the other one is set 
+/// different values for every cpu.
+/// Example:
+///             int size = 2;
+//              cpu_utilization * cpu_args;
+///             set_cpu_percentage(args, size);
+/// </pre>
+/// @param[in]  cpu_args The cpu number and it's utilization percentage.
+/// @param[in]  size     The number of the cpuset's members.
+/// @return     Zero for success, none-zero for failures. 
+/// @retval  0  Successful.
+/// @retval -1  Input paremeters error.
+/// @retval -2  Call get_percentage_value faild.
+/// @retval -3  Wrong decision.
+/// @see        get_percentage_value
+/// @attention  **DO NOT** input NULL for cpu_args or none-positive values for size.
 int set_cpu_percentage(cpu_utilization * cpu_args_origin, int size)
 {
+    if((size <= 0) || (NULL == cpu_args_origin))
+    {
+        return -1;
+    }
     cpu_utilization * cpu_args = cpu_args_origin;
     printf("Would you like to set all the cpus' utilization to a same value?\nY/N: ");
     char c_yon = '0';
@@ -260,7 +362,10 @@ int set_cpu_percentage(cpu_utilization * cpu_args_origin, int size)
     if (('Y' == c_yon) || ('y' == c_yon))
     {
         double percentage = 0;
-        get_percentage_value(&percentage);
+        if(get_percentage_value(&percentage))
+        {
+           return -2;
+        }
         for(i = 0; i < size; i++)
         {
             (*cpu_args).utilization = percentage;
@@ -276,7 +381,10 @@ int set_cpu_percentage(cpu_utilization * cpu_args_origin, int size)
         {
             printf("=============================================================\n");
             printf("Please input the utilization of cpu %d:\n", (*cpu_args).cpu);
-            get_percentage_value(&percentage);
+            if(get_percentage_value(&percentage))
+            {
+                return -2;
+            }
             (*cpu_args).utilization = percentage;
             cpu_args++;
         }
@@ -286,13 +394,34 @@ int set_cpu_percentage(cpu_utilization * cpu_args_origin, int size)
      else
      {
          printf("Bad decision!\n");
-         return -1;
+         return -3;
      } 
 }
 
-
+/// @brief  Get cpu utilization percentage from stdin.
+/// 
+/// <pre>
+/// This function get cpu utilization percentage from stdin, the value 
+/// transfers by point(double *). When your inputs have any mistake, you
+/// can continue, except inputting 'EOF'.
+/// Example:
+///             double percentage = 0;
+///             get_percentage_value(&percentage);
+/// </pre>
+/// @param[out] p_percentage    The percentage got from stdin will transmit by
+/// this point.
+/// @return     Zero for success, none-zero for failures. 
+/// @retval  0  Successful.
+/// @retval -1  Input paremeters error.
+/// @retval -2  Exit from 'EOF'.
+/// @see        set_cpu_percentage
+/// @attention  **DO NOT** input NULL for p_percentage.
 int get_percentage_value(double * p_percentage)
 {
+    if(NULL == p_percentage)
+    {
+        return -1;
+    }
     char * percentage = (char *)malloc(128 * sizeof(char));
     int while_flag = 0;
     while (0 == while_flag)
@@ -304,7 +433,7 @@ int get_percentage_value(double * p_percentage)
         {
             free(percentage);
             percentage = NULL;
-            return -1; 
+            return -2; 
         }
         if ((atof(percentage) <= 0) || (atof(percentage) > 1))
         {

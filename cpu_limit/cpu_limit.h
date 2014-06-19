@@ -1,8 +1,10 @@
 //////////////////////////////////////////////////////////////////////////
+/// <pre>
 /// COPYRIGHT NOTICE
 /// Copyright(c) 2014, CS2C
 /// All rights reserved.
-///
+/// </pre>
+/// 
 /// @file       cpu_limit.h
 /// @brief      Head file for cpu_limit.c
 ///
@@ -13,26 +15,16 @@
 //////////////////////////////////////////////////////////////////////////
 typedef struct CPU_UTILIZATION 
 {
-    int     cpu;
+    int      cpu;
     double   utilization;
 } cpu_utilization;
-/// @brief  Bind a thread with a utilization percentage.
-/// 
-/// <pre>
-/// This function should be called by pthread_create. First define 
-/// a cpu_utilization point, and convert it to void*.
-/// Example:
-///     pthread_t * p_tid; 
-///     cpu_utilization * cpu_args;
-///     pthread_create(p_tid, NULL, thread_bind_cpu, (void*)(cpu_args));
-/// </pre>
-/// @param[in] arg void *  The cpu number and it's utilization percentage.
-/// @return void *
-/// @retval N/A
-/// @see
-/// @notice
+
 void * thread_bind_cpu(void * cpu_args);
-int multi_threads_run(cpu_utilization *, int);
-int get_percentage_value(double *);
-int set_cpu_percentage(cpu_utilization *, int);
+
+int multi_threads_run(cpu_utilization * cpu_args, int size);
+
+int get_percentage_value(double * p_percentage);
+
+int set_cpu_percentage(cpu_utilization * cpu_args, int size);
+
 void usages();
