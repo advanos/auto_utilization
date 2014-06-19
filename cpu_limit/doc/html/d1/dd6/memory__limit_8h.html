@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>CPU_LIMIT: memory_limit.h文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 制作者 Doxygen 1.6.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="../../main.html"><span>首页</span></a></li>
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li class="current"><a href="../../files.html"><span>文件</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="../../files.html"><span>文件列表</span></a></li>
+      <li><a href="../../globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>memory_limit.h文件参考</h1>
+<p>Head file for <a class="el" href="../../d6/d99/memory__limit_8c.html">memory_limit.c</a>.  
+<a href="#_details">更多...</a></p>
+<div class="dynheader">
+此图展示直接或间接包含该文件的文件：</div>
+<div class="dynsection">
+<div class="center"><img src="../../da/dce/memory__limit_8h__dep__incl.png" border="0" usemap="#memory__limit_8hdep_map" alt=""/></div>
+<map name="memory__limit_8hdep_map" id="memory__limit_8hdep">
+<area shape="rect" id="node3" href="../../d6/d99/memory__limit_8c.html" title="memory_limit.c" alt="" coords="5,83,115,112"/></map>
+</div>
+
+<p><a href="../../d1/dd6/memory__limit_8h_source.html">浏览该文件的源代码。</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>函数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dd6/memory__limit_8h.html#a44637fcc5fc09fa43873aacfaacb4bce">free_mem</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dd6/memory__limit_8h.html#a29fbac071e52a907001c695629f86db7">drop_cache</a> (char *)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dd6/memory__limit_8h.html#a23f475e07fb04559b799425084a36984">set_opt</a> (char *, long *, long *)</td></tr>
+</table>
+<hr/><a name="_details"></a><h2>详细描述</h2>
+<p>Head file for <a class="el" href="../../d6/d99/memory__limit_8c.html">memory_limit.c</a>. </p>
+<p>COPYRIGHT NOTICE Copyright(c) 2014, CS2C All rights reserved.</p>
+<dl class="version"><dt><b>版本:</b></dt><dd>0.1 </dd></dl>
+<dl class="author"><dt><b>作者:</b></dt><dd>Kun He(<a href="mailto:kun.he@cs2c.com.cn">kun.he@cs2c.com.cn</a>) </dd></dl>
+<dl class="date"><dt><b>日期:</b></dt><dd>2014.06.19 </dd></dl>
+
+<p>在文件<a class="el" href="../../d1/dd6/memory__limit_8h_source.html">memory_limit.h</a>中定义。</p>
+<hr/><h2>函数文档</h2>
+<a class="anchor" id="a29fbac071e52a907001c695629f86db7"></a><!-- doxytag: member="memory_limit.h::drop_cache" ref="a29fbac071e52a907001c695629f86db7" args="(char *)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int drop_cache </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>在文件<a class="el" href="../../d6/d99/memory__limit_8c_source.html">memory_limit.c</a>第<a class="el" href="../../d6/d99/memory__limit_8c_source.html#l00150">150</a>行定义。</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00151"></a>00151 {
+<a name="l00152"></a>00152     <span class="keywordtype">int</span> ret = 0;
+<a name="l00153"></a>00153     FILE * fp = fopen(<span class="stringliteral">&quot;/proc/sys/vm/drop_caches&quot;</span>, <span class="stringliteral">&quot;w&quot;</span>);
+<a name="l00154"></a>00154     <span class="keywordflow">if</span>(!fwrite(value, strlen(value), 1, fp))
+<a name="l00155"></a>00155     {
+<a name="l00156"></a>00156         ret = -1;
+<a name="l00157"></a>00157     }
+<a name="l00158"></a>00158     fclose(fp);
+<a name="l00159"></a>00159     fp = NULL;
+<a name="l00160"></a>00160     <span class="keywordflow">return</span> ret;
+<a name="l00161"></a>00161 }
+</pre></div></p>
+
+<p><div class="dynheader">
+这是这个函数的调用图。</div>
+<div class="dynsection">
+<div class="center"><img src="../../d1/dd6/memory__limit_8h_a29fbac071e52a907001c695629f86db7_icgraph.png" border="0" usemap="#d1/dd6/memory__limit_8h_a29fbac071e52a907001c695629f86db7_icgraph_map" alt=""></div>
+<map name="d1/dd6/memory__limit_8h_a29fbac071e52a907001c695629f86db7_icgraph_map" id="d1/dd6/memory__limit_8h_a29fbac071e52a907001c695629f86db7_icgraph">
+<area shape="rect" id="node3" href="../../d6/d99/memory__limit_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="144,5,195,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a44637fcc5fc09fa43873aacfaacb4bce"></a><!-- doxytag: member="memory_limit.h::free_mem" ref="a44637fcc5fc09fa43873aacfaacb4bce" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long free_mem </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>在文件<a class="el" href="../../d6/d99/memory__limit_8c_source.html">memory_limit.c</a>第<a class="el" href="../../d6/d99/memory__limit_8c_source.html#l00079">79</a>行定义。</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00080"></a>00080 {
+<a name="l00081"></a>00081     <span class="keywordtype">char</span> * line = NULL;
+<a name="l00082"></a>00082     ssize_t read;
+<a name="l00083"></a>00083     <span class="keywordtype">size_t</span> len = 0;
+<a name="l00084"></a>00084     FILE * f = fopen(<span class="stringliteral">&quot;/proc/meminfo&quot;</span>, <span class="stringliteral">&quot;r&quot;</span>);
+<a name="l00085"></a>00085     <span class="keywordflow">if</span> (f == NULL)
+<a name="l00086"></a>00086     {
+<a name="l00087"></a>00087         <span class="keywordflow">return</span> -1;
+<a name="l00088"></a>00088     }
+<a name="l00089"></a>00089     read = getline(&amp;line, &amp;len, f);
+<a name="l00090"></a>00090     read = getline(&amp;line, &amp;len, f);
+<a name="l00091"></a>00091     fclose(f);
+<a name="l00092"></a>00092     <span class="keywordtype">char</span> *newchar = (<span class="keywordtype">char</span>*)malloc(read * <span class="keyword">sizeof</span>(<span class="keywordtype">char</span>));
+<a name="l00093"></a>00093     <span class="keywordtype">char</span> *opt = newchar;
+<a name="l00094"></a>00094     <span class="keywordtype">int</span> i = 0;
+<a name="l00095"></a>00095     <span class="keywordflow">for</span> (i = 0; i &lt; read; i++)
+<a name="l00096"></a>00096     {
+<a name="l00097"></a>00097         <span class="keywordflow">if</span> ((line[i] &gt;= <span class="charliteral">&apos;0&apos;</span>) &amp;&amp; (line[i] &lt;= <span class="charliteral">&apos;9&apos;</span>))
+<a name="l00098"></a>00098         {
+<a name="l00099"></a>00099             *opt = line[i];
+<a name="l00100"></a>00100             opt++;
+<a name="l00101"></a>00101         }
+<a name="l00102"></a>00102     }
+<a name="l00103"></a>00103     *opt = <span class="charliteral">&apos;\0&apos;</span>;
+<a name="l00104"></a>00104     opt = NULL;
+<a name="l00105"></a>00105     <span class="keywordtype">long</span> ret = atoi(newchar);
+<a name="l00106"></a>00106     free(newchar);
+<a name="l00107"></a>00107     <span class="keywordflow">return</span> ret * 1024;
+<a name="l00108"></a>00108 }
+</pre></div></p>
+
+<p><div class="dynheader">
+这是这个函数的调用图。</div>
+<div class="dynsection">
+<div class="center"><img src="../../d1/dd6/memory__limit_8h_a44637fcc5fc09fa43873aacfaacb4bce_icgraph.png" border="0" usemap="#d1/dd6/memory__limit_8h_a44637fcc5fc09fa43873aacfaacb4bce_icgraph_map" alt=""></div>
+<map name="d1/dd6/memory__limit_8h_a44637fcc5fc09fa43873aacfaacb4bce_icgraph_map" id="d1/dd6/memory__limit_8h_a44637fcc5fc09fa43873aacfaacb4bce_icgraph">
+<area shape="rect" id="node3" href="../../d6/d99/memory__limit_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="133,5,184,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a23f475e07fb04559b799425084a36984"></a><!-- doxytag: member="memory_limit.h::set_opt" ref="a23f475e07fb04559b799425084a36984" args="(char *, long *, long *)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int set_opt </td>
+          <td>(</td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long *&nbsp;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long *&nbsp;</td>
+          <td class="paramname"></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>在文件<a class="el" href="../../d6/d99/memory__limit_8c_source.html">memory_limit.c</a>第<a class="el" href="../../d6/d99/memory__limit_8c_source.html#l00111">111</a>行定义。</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00112"></a>00112 {
+<a name="l00113"></a>00113     <span class="keywordtype">char</span> setunit = <span class="charliteral">&apos;0&apos;</span>;
+<a name="l00114"></a>00114     setunit = *(pmem + strlen(pmem) - 1);
+<a name="l00115"></a>00115     <span class="keywordflow">if</span> (<span class="charliteral">&apos;G&apos;</span> == setunit || <span class="charliteral">&apos;g&apos;</span> == setunit)
+<a name="l00116"></a>00116     {
+<a name="l00117"></a>00117         *psetrate = 1024 * 1024;
+<a name="l00118"></a>00118         *(pmem + strlen(pmem) - 1) = <span class="charliteral">&apos;\0&apos;</span>;
+<a name="l00119"></a>00119         *psetvalue = (*psetrate) * 1024 * atoi(pmem);
+<a name="l00120"></a>00120         printf(<span class="stringliteral">&quot;Set free memory to: %ld bytes.\n&quot;</span>, *psetvalue);
+<a name="l00121"></a>00121     }
+<a name="l00122"></a>00122     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="charliteral">&apos;M&apos;</span> == setunit || <span class="charliteral">&apos;m&apos;</span> == setunit)
+<a name="l00123"></a>00123     {
+<a name="l00124"></a>00124         *psetrate = 1024 * 1024;
+<a name="l00125"></a>00125         *(pmem + strlen(pmem) - 1) = <span class="charliteral">&apos;\0&apos;</span>;
+<a name="l00126"></a>00126         *psetvalue = (*psetrate) * atoi(pmem);
+<a name="l00127"></a>00127         printf(<span class="stringliteral">&quot;Set free memory to: %ld bytes.\n&quot;</span>, *psetvalue);
+<a name="l00128"></a>00128     }
+<a name="l00129"></a>00129     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="charliteral">&apos;K&apos;</span> == setunit || <span class="charliteral">&apos;k&apos;</span> == setunit)
+<a name="l00130"></a>00130     {
+<a name="l00131"></a>00131         *psetrate = 1024;
+<a name="l00132"></a>00132         *(pmem + strlen(pmem) - 1) = <span class="charliteral">&apos;\0&apos;</span>;
+<a name="l00133"></a>00133         *psetvalue = (*psetrate) * atoi(pmem);
+<a name="l00134"></a>00134         printf(<span class="stringliteral">&quot;Set free memory to: %ld bytes.\n&quot;</span>, *psetvalue);
+<a name="l00135"></a>00135     }
+<a name="l00136"></a>00136     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="charliteral">&apos;B&apos;</span> == setunit || (setunit &gt;= <span class="charliteral">&apos;0&apos;</span> &amp;&amp; setunit &lt;= <span class="charliteral">&apos;9&apos;</span>))
+<a name="l00137"></a>00137     {
+<a name="l00138"></a>00138         *psetrate = 1;
+<a name="l00139"></a>00139         *psetvalue = (*psetrate) * atoi(pmem);
+<a name="l00140"></a>00140         printf(<span class="stringliteral">&quot;Set free memory to: %ld bytes.\n&quot;</span>, *psetvalue);
+<a name="l00141"></a>00141     }
+<a name="l00142"></a>00142     <span class="keywordflow">else</span>
+<a name="l00143"></a>00143     {
+<a name="l00144"></a>00144         printf(<span class="stringliteral">&quot;Input memory size error!\n&quot;</span>);
+<a name="l00145"></a>00145         <span class="keywordflow">return</span> -1;
+<a name="l00146"></a>00146     }
+<a name="l00147"></a>00147     <span class="keywordflow">return</span> 0;
+<a name="l00148"></a>00148 }
+</pre></div></p>
+
+<p><div class="dynheader">
+这是这个函数的调用图。</div>
+<div class="dynsection">
+<div class="center"><img src="../../d1/dd6/memory__limit_8h_a23f475e07fb04559b799425084a36984_icgraph.png" border="0" usemap="#d1/dd6/memory__limit_8h_a23f475e07fb04559b799425084a36984_icgraph_map" alt=""></div>
+<map name="d1/dd6/memory__limit_8h_a23f475e07fb04559b799425084a36984_icgraph_map" id="d1/dd6/memory__limit_8h_a23f475e07fb04559b799425084a36984_icgraph">
+<area shape="rect" id="node3" href="../../d6/d99/memory__limit_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="120,5,171,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+</div>
+<hr size="1"/><address style="text-align: right;"><small>Generated at 19 Jun 2014 for CPU_LIMIT by&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d5/d4e/cpu__limit_8c.html#a8faffd713a737a2c969648f7879ec747" title="multi_threads_run" alt="" coords="111,5,236,35"/>
+<area shape="rect" id="node7" href="$d5/d4e/cpu__limit_8c.html#aa4f72fe91bc897f56287aca36a912aec" title="set_cpu_percentage" alt="" coords="104,59,243,88"/>
+<area shape="rect" id="node11" href="$d5/d4e/cpu__limit_8c.html#aace1d33c3bcb8de79f41e78288cf6c0a" title="usages" alt="" coords="141,112,205,141"/>
+<area shape="rect" id="node5" href="$d5/d4e/cpu__limit_8c.html#ab861afb25d3e949b511b54f1a7c2027e" title="Bind a thread with a utilization percentage." alt="" coords="307,5,424,35"/>
+<area shape="rect" id="node9" href="$d5/d4e/cpu__limit_8c.html#a068c17be2ba9ba7412376cead7647cba" title="get_percentage_value" alt="" coords="291,59,440,88"/>
+</map>
