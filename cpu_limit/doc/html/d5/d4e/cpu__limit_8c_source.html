@@ -333,7 +333,7 @@
 <a name="l00416"></a>00416 {
 <a name="l00417"></a>00417     <span class="comment">// Two choises, one is range from m to n(such as:0-1), </span>
 <a name="l00418"></a>00418     <span class="comment">// the other is cpuset separated by &apos;.&apos;(such as 0.2.4).</span>
-<a name="l00419"></a>00419     printf(<span class="stringliteral">&quot;Please input the cpu set, such as:\n0-3\nor:0.2.4\n&quot;</span>);
+<a name="l00419"></a>00419     printf(<span class="stringliteral">&quot;Please input the cpu set, there are two choices:\nThe one is range from start to end(such as: 0-3).\nThe other is cpuset separated by &apos;.&apos;(such as: 0.2.4).\nNotice: All the digital must be none-minus and smaller than %d.\n&quot;</span>, sysconf(_SC_NPROCESSORS_ONLN));
 <a name="l00420"></a>00420     <span class="keywordtype">char</span> * cpuset = (<span class="keywordtype">char</span> *)malloc(128 * <span class="keyword">sizeof</span>(<span class="keywordtype">char</span>));
 <a name="l00421"></a>00421     <span class="keywordtype">int</span> size = -1;
 <a name="l00422"></a>00422     <a class="code" href="../../df/d9e/struct_c_p_u___u_t_i_l_i_z_a_t_i_o_n.html">cpu_utilization</a> * cpu_args_origin = NULL;

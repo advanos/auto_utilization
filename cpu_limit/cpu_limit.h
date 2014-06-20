@@ -18,14 +18,9 @@ typedef struct CPU_UTILIZATION
     int      cpu;
     double   utilization;
 } cpu_utilization;
-
 void * thread_bind_cpu(void * cpu_args);
-
 int multi_threads_run(cpu_utilization * cpu_args, int size);
-
 int get_percentage_value(double * p_percentage);
-
 int set_cpu_percentage(cpu_utilization * cpu_args, int size);
-
 int set_cpuset();
 void usages();

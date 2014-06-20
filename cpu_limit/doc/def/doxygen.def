@@ -175,7 +175,7 @@ _EnD_oF_dEf_TeXt_;
     @retval -2  Thread error.
     @retval -3  Run set_cpuset error.
     @see        
-    @attention    
+    @attention  **NEVER** run backgroud.   
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'db/d28/cpu__limit_8h_1a2e566c01e0d23dd5d29a1c30fe795c5e';
@@ -560,7 +560,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-defname = 'arg';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      func-mem-desc-line = '22';
+      func-mem-desc-line = '21';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Bind a thread with a cpu and this thread will spend some utilization 
     more of the very one.
@@ -619,7 +619,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'size';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      func-mem-desc-line = '24';
+      func-mem-desc-line = '22';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Spend specified utilization percentages to several cpus.
 _EnD_oF_dEf_TeXt_;
@@ -674,7 +674,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'p_percentage';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      func-mem-desc-line = '26';
+      func-mem-desc-line = '23';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get cpu utilization percentage from stdin.
 _EnD_oF_dEf_TeXt_;
@@ -725,7 +725,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'size';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      func-mem-desc-line = '28';
+      func-mem-desc-line = '24';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set cpu utilization percentage to a same value or different ones.
 _EnD_oF_dEf_TeXt_;
@@ -768,7 +768,7 @@ int
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'set_cpuset';
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      func-mem-desc-line = '30';
+      func-mem-desc-line = '25';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Choose cpus specified, and spend some cpu utilization 
     on them.
@@ -825,7 +825,7 @@ void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'usages';
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/cpu_limit.h';
-      func-mem-desc-line = '31';
+      func-mem-desc-line = '26';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -906,26 +906,52 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-array = '[]';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.c';
-      func-mem-desc-line = '24';
+      func-mem-desc-line = '48';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+main function.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+    <pre>
+    Spend some memory in order to let free space be a specified value
 
+    Example:
+                memory_limit 2G;
+                memory_limit 2g;
+                memory_limit 500M;
+                memory_limit 500m;
+                memory_limit 1024K;
+                memory_limit 1024k;
+                memory_limit 1024B;
+                memory_limit 1024;
+    </pre>
+    @param[in]  free_memory     The free memory.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  Input paremeters error.
+    @retval -2  Free memory information error.
+    @retval -3  Bad choice.
+    @retval -4  Drop caches faild.
+    @see        oom_killer overcommit 
+    @attention  We sujest that the input value should be larger than 100MiB.  
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1ae3302c244d0c79c395e47deb335955f4';
-        func-mem-ref-line = '284';
+        func-mem-ref-line = '334';
         func-mem-ref-name = 'drop_cache';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a44637fcc5fc09fa43873aacfaacb4bce';
-        func-mem-ref-line = '108';
+        func-mem-ref-line = '158';
         func-mem-ref-name = 'free_mem';
     };
       func-mem-referenceto = {
+        func-mem-ref-id = 'd6/d99/memory__limit_8c_1a91dd715643afd2f2be6319d01e1e24de';
+        func-mem-ref-line = '356';
+        func-mem-ref-name = 'memory_limit_usage';
+    };
+      func-mem-referenceto = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1aa9fa28a9bbc85e7b51544532bc0420fe';
-        func-mem-ref-line = '219';
+        func-mem-ref-line = '269';
         func-mem-ref-name = 'set_opt';
     };
     }; /* func-member */
@@ -939,7 +965,7 @@ long
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'free_mem';
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.c';
-      func-mem-desc-line = '109';
+      func-mem-desc-line = '159';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get current free memory of the os.
 _EnD_oF_dEf_TeXt_;
@@ -959,7 +985,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '23';
+        func-mem-ref-line = '47';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -991,7 +1017,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'psetvalue';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.c';
-      func-mem-desc-line = '220';
+      func-mem-desc-line = '270';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set free memory information.
 _EnD_oF_dEf_TeXt_;
@@ -1008,12 +1034,12 @@ _EnD_oF_dEf_TeXt_;
     @return     Zero for success, none-zero for failures. 
     @retval  0  Successful.
     @retval -1  Input parameters error.
-    @see        /proc/meminfo
+    @see        
     @attention    
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '23';
+        func-mem-ref-line = '47';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -1033,7 +1059,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'value';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.c';
-      func-mem-desc-line = '285';
+      func-mem-desc-line = '335';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set value of /proc/sys/vm/drop_caches.
 _EnD_oF_dEf_TeXt_;
@@ -1050,12 +1076,35 @@ _EnD_oF_dEf_TeXt_;
     @retval  0  Successful.
     @retval -1  I/O error.
     @retval -2  Setting value error.
-    @see        /proc/meminfo
+    @see        /proc/sys/vm/drop_caches
     @attention    
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '23';
+        func-mem-ref-line = '47';
+        func-mem-ref-name = 'main';
+    };
+    }; /* func-member */
+    func-member = {
+      func-mem-kind = 'function';
+      func-mem-id   = 'd6/d99/memory__limit_8c_1a91dd715643afd2f2be6319d01e1e24de';
+      func-mem-virt = normal;
+      func-mem-prot = public;
+      func-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      func-mem-name = 'memory_limit_usage';
+      func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.c';
+      func-mem-desc-line = '357';
+      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      func-mem-referenceby = {
+        func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
+        func-mem-ref-line = '47';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -1113,7 +1162,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '23';
+        func-mem-ref-line = '47';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -1150,12 +1199,12 @@ _EnD_oF_dEf_TeXt_;
     @retval  0  Successful.
     @retval -1  I/O error.
     @retval -2  Setting value error.
-    @see        /proc/meminfo
+    @see        /proc/sys/vm/drop_caches
     @attention    
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '23';
+        func-mem-ref-line = '47';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -1204,12 +1253,35 @@ _EnD_oF_dEf_TeXt_;
     @return     Zero for success, none-zero for failures. 
     @retval  0  Successful.
     @retval -1  Input parameters error.
-    @see        /proc/meminfo
+    @see        
     @attention    
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '23';
+        func-mem-ref-line = '47';
+        func-mem-ref-name = 'main';
+    };
+    }; /* func-member */
+    func-member = {
+      func-mem-kind = 'function';
+      func-mem-id   = 'd1/dd6/memory__limit_8h_1a91dd715643afd2f2be6319d01e1e24de';
+      func-mem-virt = normal;
+      func-mem-prot = public;
+      func-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      func-mem-name = 'memory_limit_usage';
+      func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.h';
+      func-mem-desc-line = '19';
+      func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      func-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      func-mem-referenceby = {
+        func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
+        func-mem-ref-line = '47';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */

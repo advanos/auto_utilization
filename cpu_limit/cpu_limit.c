@@ -40,7 +40,7 @@
 /// @retval -2  Thread error.
 /// @retval -3  Run set_cpuset error.
 /// @see        
-/// @attention  
+/// @attention  **NEVER** run backgroud. 
 int main(int argc, char *argv[])
 {
     // argc = 1, all by yourself.
@@ -416,7 +416,7 @@ int set_cpuset()
 {
     // Two choises, one is range from m to n(such as:0-1), 
     // the other is cpuset separated by '.'(such as 0.2.4).
-    printf("Please input the cpu set, such as:\n0-3\nor:0.2.4\n");
+    printf("Please input the cpu set, there are two choices:\nThe one is range from start to end(such as: 0-3).\nThe other is cpuset separated by '.'(such as: 0.2.4).\nNotice: All the digital must be none-minus and smaller than %d.\n", sysconf(_SC_NPROCESSORS_ONLN));
     char * cpuset = (char *)malloc(128 * sizeof(char));
     int size = -1;
     cpu_utilization * cpu_args_origin = NULL;

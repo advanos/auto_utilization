@@ -1,10 +1,110 @@
-这是一个初级版本，对输入参数未进行较强的正确性判断，为确保运行成功请注意一下事项。
-1、程序的作用是将指定的cpu的cpu利用率设置为一个大于0且小于1的数。
-2、基本用法 cpu_limit (int)cpu_number (float)cpu_utilization_percentage
-   例如:
-   cpu_limit 0 0.75
-   执行以上语句将cpu0的利用率设置为75%
-3、不要尝试输入非法的参数，因为这些参数在程序中未加入错误处理，例如：
-   不要输入不存在的cpu_number;
-   不要输入float(0,1]范围以外的cpu_utilization_percentage
-4、如有任何问题，可自行修改程序，或与kun.he@cs2c.com.cn联系。
+声明
+1、版本1.0.0，实现对cpu利用率的设置和空闲内存的设置，使用事项见下文。
+2、doc目录中有详细的doxygen文档供阅读。
+3、如果发现Bug或者存在疑问，敬请沟通，联系方式:kun.he@cs2c.com.cn
+
+语法
+[]          可以省略
+()          或者
+
+文件列表
+*******************************************************************************
+文件名称    cpu_limit
+1、简述     
+            程序的作用是将指定的cpu各核心上分别占用指定的cpu利用率。
+
+2、基本用法 
+            cpu_limit [[int cpu_number] float cpu_utilization_percentage]
+            主要有2种使用方法:
+            a. cpu_limit
+            说明：
+            单独执行cpu_limit时，可以在系统支持范围内任意选择cpu，并且可以分别对每个cpu的使用率进行设定。Cpu范围可以是连续的，例如0-2表示cpu0、cpu1、cpu2；也可以是离散的，例如0.2.4表示cpu0、cpu2、cpu4。
+            b. cpu_limit [cpu_number] cpu_utilization_percentage
+            说明：
+            cpu_number 指定了cpu的编号，如果省略则表示当前系统全部的核。
+            cpu_utilization_percentage 制定了统一的cpu利用率。
+
+3、Example：
+            cpu_limit 0 0.5          cpu0的资源利用率增加50%。
+            cpu_limit 0.25           全部CPU的资源利用率增加25%。
+
+4、注意：
+            a. 不要尝试输入非法的参数。
+            b. 不要输入不存在的cpu_number。
+            c. 不要输入float(0,1]范围以外的cpu_utilization_percentage。
+            d. 不要后台运行此程序。
+            f. 当前total定义为10000微秒，在测试中较稳定。但如果同时运行多个cpu_limit时，效果不好时，适当的调整total值即可。
+
+*******************************************************************************
+文件名称    cpu_limit.c
+1、简述     
+            cpu_limit程序源码。
+
+2、基本用法
+            gcc cpu_limit.c -o cpu_limit -lpthread
+3、注意：
+            a. 由于需要引用libpthread.so，所以编译时要附加-lpthread参数。
+
+*******************************************************************************
+文件名称    cpu_limit.h
+1、简述     
+            cpu_limit程序头文件。
+
+*******************************************************************************
+文件名称    memory_limit
+1、简述     
+            程序的作用是占用一定的内存使得空闲内存空间达到某个制定值。
+
+2、基本用法 
+            memory_limit free_mem
+   说明：
+            free_mem的格式为xxxxxxxxU，其中xxxxxxxx代表数值部分，U代表单位部分。
+            数值必须是正整数，单位部分可以是以下几种之一：
+            G(g)            GiB
+            M(m)            MiB
+            K(k)            KiB
+            [B]             Byte
+
+3、Example：
+            以下几种用法都是合法的，并且作用都是将系统空闲内存压至1GiB.    
+            memory_limit 1G
+            memory_limit 1g
+            memory_limit 1024M
+            memory_limit 1024m
+            memory_limit 1048576K
+            memory_limit 1048576k
+            memory_limit 1073741824B
+            memory_limit 1073741824
+
+4、注意：
+            a. 不建议输入100MiB以下的内存值，否则程序可能会一直将swap空间吃完，触发malloc失败,从而可能引起系统死机、崩溃、触发oom_killer等后果。
+            b. 单位越大分配速度越快，精确度越低，推荐使用M(m)。
+
+*******************************************************************************
+文件名称    memory_limit.c
+1、简述     
+            memory_limit程序源码。
+
+2、基本用法
+            gcc memory_limit.c -o memory_limit
+
+*******************************************************************************
+文件名称    memory_limit.h
+1、简述     
+            memory_limit程序头文件。
+
+*******************************************************************************
+文件名称    doxygen.def
+1、简述     
+            Doxygen配置文件。
+
+2、基本用法
+            doxygen doxygen.def
+
+*******************************************************************************
+目录名称    doc
+1、简述     
+            Doxygen文档生成目录。
+
+2、基本用法
+            firefox doc/html/index.html

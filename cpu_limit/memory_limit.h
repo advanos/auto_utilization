@@ -16,3 +16,4 @@ long free_mem();
 int drop_cache(char *);
 int set_opt(char *, long *, long *);
 
+void memory_limit_usage();
