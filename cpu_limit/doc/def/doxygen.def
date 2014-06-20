@@ -873,7 +873,7 @@ file = {
       define-mem-prot = public;
       define-mem-name = '_GNU_SOURCE';
       define-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.c';
-      define-mem-desc-line = '1';
+      define-mem-desc-line = '16';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -906,7 +906,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-array = '[]';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.c';
-      func-mem-desc-line = '9';
+      func-mem-desc-line = '24';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -915,17 +915,17 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceto = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1ae3302c244d0c79c395e47deb335955f4';
-        func-mem-ref-line = '150';
+        func-mem-ref-line = '284';
         func-mem-ref-name = 'drop_cache';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a44637fcc5fc09fa43873aacfaacb4bce';
-        func-mem-ref-line = '79';
+        func-mem-ref-line = '108';
         func-mem-ref-name = 'free_mem';
     };
       func-mem-referenceto = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1aa9fa28a9bbc85e7b51544532bc0420fe';
-        func-mem-ref-line = '111';
+        func-mem-ref-line = '219';
         func-mem-ref-name = 'set_opt';
     };
     }; /* func-member */
@@ -939,16 +939,27 @@ long
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'free_mem';
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.c';
-      func-mem-desc-line = '80';
+      func-mem-desc-line = '109';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Get current free memory of the os.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+    <pre>
+    Read memory information from /proc/meminfo.
+    Example:
+                long freemem = free_mem() 
+    </pre>
+    @param      none.
+    @return     The free memory of the os now, minus for failures. 
+    @retval >0  Successful.
+    @retval -1  I/O error.
+    @retval -2  File information error.
+    @see        /proc/meminfo
+    @attention    
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '8';
+        func-mem-ref-line = '23';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -980,16 +991,29 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'psetvalue';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.c';
-      func-mem-desc-line = '112';
+      func-mem-desc-line = '220';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Set free memory information.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+    <pre>
+    Read a string which contains free memory information, and set
+    malloc size and rate.
+    Example:
+                char * input;               set_opt(input, p_rate, p_value);
+    </pre>
+    @param[in]  pmem        A string which contains free memory information.
+    @param[out] psetrate    Malloc rate.
+    @param[out] psetvalue   Malloc size.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  Input parameters error.
+    @see        /proc/meminfo
+    @attention    
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '8';
+        func-mem-ref-line = '23';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -1009,16 +1033,29 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'value';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.c';
-      func-mem-desc-line = '151';
+      func-mem-desc-line = '285';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Set value of /proc/sys/vm/drop_caches.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+    <pre>
+    Set 1 to free pagecache;
+    Set 2 to free dentries and inodes;
+    Set 3 to free pagecache, dentries and inodes;
+    Example:
+                dorp_cache(3); 
+    </pre>
+    @param[in]  value The drop_caches's value.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  I/O error.
+    @retval -2  Setting value error.
+    @see        /proc/meminfo
+    @attention    
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '8';
+        func-mem-ref-line = '23';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -1026,10 +1063,20 @@ _EnD_oF_dEf_TeXt_;
   file-full-name  = '/root/CPU_LIMIT/cpu_limit/memory_limit.c';
   file-first-line = '1';
   file-briefdesc  = <<_EnD_oF_dEf_TeXt_
-
+Spend some memory in order to let free space be a specified
+    value.
 _EnD_oF_dEf_TeXt_;
   file-documentation = <<_EnD_oF_dEf_TeXt_
+    <pre>
+    COPYRIGHT NOTICE
+    Copyright(c) 2014, CS2C
+    All rights reserved.
+    </pre>
 
+    
+    @version    0.1
+    @author     Kun He(kun.he@cs2c.com.cn)
+    @date       2014.06.20
 _EnD_oF_dEf_TeXt_;
 }; /* file */
 file = {
@@ -1048,14 +1095,25 @@ _EnD_oF_dEf_TeXt_;
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.h';
       func-mem-desc-line = '15';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Get current free memory of the os.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+    <pre>
+    Read memory information from /proc/meminfo.
+    Example:
+                long freemem = free_mem() 
+    </pre>
+    @param      none.
+    @return     The free memory of the os now, minus for failures. 
+    @retval >0  Successful.
+    @retval -1  I/O error.
+    @retval -2  File information error.
+    @see        /proc/meminfo
+    @attention    
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '8';
+        func-mem-ref-line = '23';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -1072,18 +1130,32 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
 char *
 _EnD_oF_dEf_TeXt_;
+        func-mem-param-defname = 'value';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.h';
       func-mem-desc-line = '16';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Set value of /proc/sys/vm/drop_caches.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+    <pre>
+    Set 1 to free pagecache;
+    Set 2 to free dentries and inodes;
+    Set 3 to free pagecache, dentries and inodes;
+    Example:
+                dorp_cache(3); 
+    </pre>
+    @param[in]  value The drop_caches's value.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  I/O error.
+    @retval -2  Setting value error.
+    @see        /proc/meminfo
+    @attention    
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '8';
+        func-mem-ref-line = '23';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */
@@ -1100,28 +1172,44 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
 char *
 _EnD_oF_dEf_TeXt_;
+        func-mem-param-defname = 'pmem';
       }; /*        func-mem-param--param */
       func-mem-param = {
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
 long *
 _EnD_oF_dEf_TeXt_;
+        func-mem-param-defname = 'psetrate';
       }; /*        func-mem-param--param */
       func-mem-param = {
         func-mem-param-type = <<_EnD_oF_dEf_TeXt_
 long *
 _EnD_oF_dEf_TeXt_;
+        func-mem-param-defname = 'psetvalue';
       }; /*        func-mem-param--param */
       func-mem-desc-file = '/root/CPU_LIMIT/cpu_limit/memory_limit.h';
       func-mem-desc-line = '17';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Set free memory information.
 _EnD_oF_dEf_TeXt_;
       func-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+    <pre>
+    Read a string which contains free memory information, and set
+    malloc size and rate.
+    Example:
+                char * input;               set_opt(input, p_rate, p_value);
+    </pre>
+    @param[in]  pmem        A string which contains free memory information.
+    @param[out] psetrate    Malloc rate.
+    @param[out] psetvalue   Malloc size.
+    @return     Zero for success, none-zero for failures. 
+    @retval  0  Successful.
+    @retval -1  Input parameters error.
+    @see        /proc/meminfo
+    @attention    
 _EnD_oF_dEf_TeXt_;
       func-mem-referenceby = {
         func-mem-ref-id = 'd6/d99/memory__limit_8c_1a0ddf1224851353fc92bfbff6f499fa97';
-        func-mem-ref-line = '8';
+        func-mem-ref-line = '23';
         func-mem-ref-name = 'main';
     };
     }; /* func-member */

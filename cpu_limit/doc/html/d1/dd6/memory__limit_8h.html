@@ -25,25 +25,28 @@
 </div>
 <div class="contents">
 <h1>memory_limit.h文件参考</h1>
-<p>Head file for <a class="el" href="../../d6/d99/memory__limit_8c.html">memory_limit.c</a>.  
+<p>Head file for <a class="el" href="../../d6/d99/memory__limit_8c.html" title="Spend some memory in order to let free space be a specified value.">memory_limit.c</a>.  
 <a href="#_details">更多...</a></p>
 <div class="dynheader">
 此图展示直接或间接包含该文件的文件：</div>
 <div class="dynsection">
 <div class="center"><img src="../../da/dce/memory__limit_8h__dep__incl.png" border="0" usemap="#memory__limit_8hdep_map" alt=""/></div>
 <map name="memory__limit_8hdep_map" id="memory__limit_8hdep">
-<area shape="rect" id="node3" href="../../d6/d99/memory__limit_8c.html" title="memory_limit.c" alt="" coords="5,83,115,112"/></map>
+<area shape="rect" id="node3" href="../../d6/d99/memory__limit_8c.html" title="Spend some memory in order to let free space be a specified value." alt="" coords="5,83,115,112"/></map>
 </div>
 
 <p><a href="../../d1/dd6/memory__limit_8h_source.html">浏览该文件的源代码。</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>函数</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">long&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dd6/memory__limit_8h.html#a44637fcc5fc09fa43873aacfaacb4bce">free_mem</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get current free memory of the os.  <a href="#a44637fcc5fc09fa43873aacfaacb4bce"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dd6/memory__limit_8h.html#a29fbac071e52a907001c695629f86db7">drop_cache</a> (char *)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set value of /proc/sys/vm/drop_caches.  <a href="#a29fbac071e52a907001c695629f86db7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dd6/memory__limit_8h.html#a23f475e07fb04559b799425084a36984">set_opt</a> (char *, long *, long *)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set free memory information.  <a href="#a23f475e07fb04559b799425084a36984"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>详细描述</h2>
-<p>Head file for <a class="el" href="../../d6/d99/memory__limit_8c.html">memory_limit.c</a>. </p>
+<p>Head file for <a class="el" href="../../d6/d99/memory__limit_8c.html" title="Spend some memory in order to let free space be a specified value.">memory_limit.c</a>. </p>
 <p>COPYRIGHT NOTICE Copyright(c) 2014, CS2C All rights reserved.</p>
 <dl class="version"><dt><b>版本:</b></dt><dd>0.1 </dd></dl>
 <dl class="author"><dt><b>作者:</b></dt><dd>Kun He(<a href="mailto:kun.he@cs2c.com.cn">kun.he@cs2c.com.cn</a>) </dd></dl>
@@ -59,7 +62,7 @@
           <td class="memname">int drop_cache </td>
           <td>(</td>
           <td class="paramtype">char *&nbsp;</td>
-          <td class="paramname"></td>
+          <td class="paramname"> <em>value</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -67,19 +70,53 @@
 </div>
 <div class="memdoc">
 
-<p>在文件<a class="el" href="../../d6/d99/memory__limit_8c_source.html">memory_limit.c</a>第<a class="el" href="../../d6/d99/memory__limit_8c_source.html#l00150">150</a>行定义。</p>
+<p>Set value of /proc/sys/vm/drop_caches. </p>
+<pre>
+    Set 1 to free pagecache;
+    Set 2 to free dentries and inodes;
+    Set 3 to free pagecache, dentries and inodes;
+    Example:
+                dorp_cache(3); 
+    </pre> <dl><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>value</em>&nbsp;</td><td>The drop_caches's value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>Zero for success, none-zero for failures. </dd></dl>
+<dl><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>0</em>&nbsp;</td><td>Successful. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>-1</em>&nbsp;</td><td>I/O error. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>-2</em>&nbsp;</td><td>Setting value error. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>参见:</b></dt><dd>/proc/meminfo </dd></dl>
+<dl class="attention"><dt><b>注意:</b></dt><dd></dd></dl>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00151"></a>00151 {
-<a name="l00152"></a>00152     <span class="keywordtype">int</span> ret = 0;
-<a name="l00153"></a>00153     FILE * fp = fopen(<span class="stringliteral">&quot;/proc/sys/vm/drop_caches&quot;</span>, <span class="stringliteral">&quot;w&quot;</span>);
-<a name="l00154"></a>00154     <span class="keywordflow">if</span>(!fwrite(value, strlen(value), 1, fp))
-<a name="l00155"></a>00155     {
-<a name="l00156"></a>00156         ret = -1;
-<a name="l00157"></a>00157     }
-<a name="l00158"></a>00158     fclose(fp);
-<a name="l00159"></a>00159     fp = NULL;
-<a name="l00160"></a>00160     <span class="keywordflow">return</span> ret;
-<a name="l00161"></a>00161 }
+<p>在文件<a class="el" href="../../d6/d99/memory__limit_8c_source.html">memory_limit.c</a>第<a class="el" href="../../d6/d99/memory__limit_8c_source.html#l00284">284</a>行定义。</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00285"></a>00285 {
+<a name="l00286"></a>00286     FILE * fp = fopen(<span class="stringliteral">&quot;/proc/sys/vm/drop_caches&quot;</span>, <span class="stringliteral">&quot;w&quot;</span>);
+<a name="l00287"></a>00287     
+<a name="l00288"></a>00288     <span class="comment">// File open error.</span>
+<a name="l00289"></a>00289     <span class="keywordflow">if</span>(NULL == fp)
+<a name="l00290"></a>00290     {
+<a name="l00291"></a>00291         <span class="keywordflow">return</span> -1;
+<a name="l00292"></a>00292     }
+<a name="l00293"></a>00293 
+<a name="l00294"></a>00294     <span class="comment">// File write error.</span>
+<a name="l00295"></a>00295     <span class="keywordflow">if</span>(!fwrite(value, strlen(value), 1, fp))
+<a name="l00296"></a>00296     {
+<a name="l00297"></a>00297         fclose(fp);
+<a name="l00298"></a>00298         fp = NULL;
+<a name="l00299"></a>00299         <span class="keywordflow">return</span> -2;
+<a name="l00300"></a>00300     }
+<a name="l00301"></a>00301     fclose(fp);
+<a name="l00302"></a>00302     fp = NULL;
+<a name="l00303"></a>00303     <span class="keywordflow">return</span> 0;
+<a name="l00304"></a>00304 }
 </pre></div></p>
 
 <p><div class="dynheader">
@@ -108,37 +145,120 @@
 </div>
 <div class="memdoc">
 
-<p>在文件<a class="el" href="../../d6/d99/memory__limit_8c_source.html">memory_limit.c</a>第<a class="el" href="../../d6/d99/memory__limit_8c_source.html#l00079">79</a>行定义。</p>
+<p>Get current free memory of the os. </p>
+<pre>
+    Read memory information from /proc/meminfo.
+    Example:
+                long freemem = <a class="el" href="../../d6/d99/memory__limit_8c.html#a44637fcc5fc09fa43873aacfaacb4bce" title="Get current free memory of the os.">free_mem()</a> 
+    </pre> <dl><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>none.</em>&nbsp;</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>The free memory of the os now, minus for failures. </dd></dl>
+<dl><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>&gt;0</em>&nbsp;</td><td>Successful. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>-1</em>&nbsp;</td><td>I/O error. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>-2</em>&nbsp;</td><td>File information error. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>参见:</b></dt><dd>/proc/meminfo </dd></dl>
+<dl class="attention"><dt><b>注意:</b></dt><dd></dd></dl>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00080"></a>00080 {
-<a name="l00081"></a>00081     <span class="keywordtype">char</span> * line = NULL;
-<a name="l00082"></a>00082     ssize_t read;
-<a name="l00083"></a>00083     <span class="keywordtype">size_t</span> len = 0;
-<a name="l00084"></a>00084     FILE * f = fopen(<span class="stringliteral">&quot;/proc/meminfo&quot;</span>, <span class="stringliteral">&quot;r&quot;</span>);
-<a name="l00085"></a>00085     <span class="keywordflow">if</span> (f == NULL)
-<a name="l00086"></a>00086     {
-<a name="l00087"></a>00087         <span class="keywordflow">return</span> -1;
-<a name="l00088"></a>00088     }
-<a name="l00089"></a>00089     read = getline(&amp;line, &amp;len, f);
-<a name="l00090"></a>00090     read = getline(&amp;line, &amp;len, f);
-<a name="l00091"></a>00091     fclose(f);
-<a name="l00092"></a>00092     <span class="keywordtype">char</span> *newchar = (<span class="keywordtype">char</span>*)malloc(read * <span class="keyword">sizeof</span>(<span class="keywordtype">char</span>));
-<a name="l00093"></a>00093     <span class="keywordtype">char</span> *opt = newchar;
-<a name="l00094"></a>00094     <span class="keywordtype">int</span> i = 0;
-<a name="l00095"></a>00095     <span class="keywordflow">for</span> (i = 0; i &lt; read; i++)
-<a name="l00096"></a>00096     {
-<a name="l00097"></a>00097         <span class="keywordflow">if</span> ((line[i] &gt;= <span class="charliteral">&apos;0&apos;</span>) &amp;&amp; (line[i] &lt;= <span class="charliteral">&apos;9&apos;</span>))
-<a name="l00098"></a>00098         {
-<a name="l00099"></a>00099             *opt = line[i];
-<a name="l00100"></a>00100             opt++;
-<a name="l00101"></a>00101         }
-<a name="l00102"></a>00102     }
-<a name="l00103"></a>00103     *opt = <span class="charliteral">&apos;\0&apos;</span>;
-<a name="l00104"></a>00104     opt = NULL;
-<a name="l00105"></a>00105     <span class="keywordtype">long</span> ret = atoi(newchar);
-<a name="l00106"></a>00106     free(newchar);
-<a name="l00107"></a>00107     <span class="keywordflow">return</span> ret * 1024;
-<a name="l00108"></a>00108 }
+<p>在文件<a class="el" href="../../d6/d99/memory__limit_8c_source.html">memory_limit.c</a>第<a class="el" href="../../d6/d99/memory__limit_8c_source.html#l00108">108</a>行定义。</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00109"></a>00109 {
+<a name="l00110"></a>00110     <span class="keywordtype">char</span> * line = NULL;
+<a name="l00111"></a>00111     ssize_t read;
+<a name="l00112"></a>00112     <span class="keywordtype">size_t</span> len = 0;
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114     <span class="comment">// Open the file of /proc/meminfo.</span>
+<a name="l00115"></a>00115     FILE * f = fopen(<span class="stringliteral">&quot;/proc/meminfo&quot;</span>, <span class="stringliteral">&quot;r&quot;</span>);
+<a name="l00116"></a>00116     
+<a name="l00117"></a>00117     <span class="comment">// File open faild.</span>
+<a name="l00118"></a>00118     <span class="keywordflow">if</span> (f == NULL)
+<a name="l00119"></a>00119     {
+<a name="l00120"></a>00120         <span class="keywordflow">return</span> -1;
+<a name="l00121"></a>00121     }
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123     <span class="comment">// Jump the first line of /proc/meminfo.</span>
+<a name="l00124"></a>00124     read = getline(&amp;line, &amp;len, f);
+<a name="l00125"></a>00125     <span class="keywordflow">if</span>(-1 == read)
+<a name="l00126"></a>00126     {
+<a name="l00127"></a>00127         fclose(f);
+<a name="l00128"></a>00128         <span class="keywordflow">return</span> -2;
+<a name="l00129"></a>00129     }
+<a name="l00130"></a>00130     
+<a name="l00131"></a>00131     <span class="comment">// Get the second line of /proc/meminfo.</span>
+<a name="l00132"></a>00132     read = getline(&amp;line, &amp;len, f);
+<a name="l00133"></a>00133     <span class="keywordflow">if</span>(-1 == read)
+<a name="l00134"></a>00134     {
+<a name="l00135"></a>00135         fclose(f);
+<a name="l00136"></a>00136         <span class="keywordflow">return</span> -2;
+<a name="l00137"></a>00137     }
+<a name="l00138"></a>00138     fclose(f);
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140     <span class="comment">// Get free memory from the read stream.</span>
+<a name="l00141"></a>00141     <span class="keywordtype">char</span> *newchar = (<span class="keywordtype">char</span>*)malloc(read * <span class="keyword">sizeof</span>(<span class="keywordtype">char</span>));
+<a name="l00142"></a>00142     <span class="keywordtype">char</span> *opt = newchar;
+<a name="l00143"></a>00143     <span class="keywordtype">int</span> i = 0;
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145     <span class="comment">// Stage 0: Search for beginning of the free memory.</span>
+<a name="l00146"></a>00146     <span class="keywordtype">int</span> stage_flag = 0;
+<a name="l00147"></a>00147     <span class="keywordflow">for</span> (i = 0; i &lt; read; i++)
+<a name="l00148"></a>00148     {
+<a name="l00149"></a>00149         <span class="comment">// Stage 2: Search over.</span>
+<a name="l00150"></a>00150         <span class="keywordflow">if</span> (2 == stage_flag)
+<a name="l00151"></a>00151         {
+<a name="l00152"></a>00152             <span class="keywordflow">break</span>;
+<a name="l00153"></a>00153         }
+<a name="l00154"></a>00154         <span class="comment">// Stage 1: Have found the front one, continue to search next bit.</span>
+<a name="l00155"></a>00155         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (1 == stage_flag)
+<a name="l00156"></a>00156         {
+<a name="l00157"></a>00157             <span class="comment">// Get digital, continue stage 1.</span>
+<a name="l00158"></a>00158             <span class="keywordflow">if</span>((line[i] &gt;= <span class="charliteral">&apos;0&apos;</span>) &amp;&amp; (line[i] &lt;= <span class="charliteral">&apos;9&apos;</span>))
+<a name="l00159"></a>00159             {
+<a name="l00160"></a>00160                 *opt = line[i];
+<a name="l00161"></a>00161                 opt++;
+<a name="l00162"></a>00162             }
+<a name="l00163"></a>00163             <span class="comment">// Get none-digital, turn to stage 2.</span>
+<a name="l00164"></a>00164             <span class="keywordflow">else</span>
+<a name="l00165"></a>00165             {
+<a name="l00166"></a>00166                 stage_flag = 2;
+<a name="l00167"></a>00167             }
+<a name="l00168"></a>00168         }
+<a name="l00169"></a>00169         <span class="comment">// Still stage 0.</span>
+<a name="l00170"></a>00170         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (0 == stage_flag)
+<a name="l00171"></a>00171         {
+<a name="l00172"></a>00172             <span class="comment">// Get digital, turn to stage 1.</span>
+<a name="l00173"></a>00173             <span class="keywordflow">if</span>((line[i] &gt;= <span class="charliteral">&apos;0&apos;</span>) &amp;&amp; (line[i] &lt;= <span class="charliteral">&apos;9&apos;</span>))
+<a name="l00174"></a>00174             {
+<a name="l00175"></a>00175                 stage_flag = 1;    
+<a name="l00176"></a>00176                 *opt = line[i];
+<a name="l00177"></a>00177                 opt++;
+<a name="l00178"></a>00178             }
+<a name="l00179"></a>00179         }
+<a name="l00180"></a>00180         <span class="comment">// Error stage.</span>
+<a name="l00181"></a>00181         <span class="keywordflow">else</span>
+<a name="l00182"></a>00182         {
+<a name="l00183"></a>00183             free(newchar);
+<a name="l00184"></a>00184             opt = NULL;
+<a name="l00185"></a>00185             newchar = NULL;
+<a name="l00186"></a>00186             <span class="keywordflow">return</span> -3;
+<a name="l00187"></a>00187         }
+<a name="l00188"></a>00188     }
+<a name="l00189"></a>00189     *opt = <span class="charliteral">&apos;\0&apos;</span>;
+<a name="l00190"></a>00190     opt = NULL;
+<a name="l00191"></a>00191     <span class="keywordtype">long</span> ret = atoi(newchar);
+<a name="l00192"></a>00192     free(newchar);
+<a name="l00193"></a>00193     newchar = NULL;
+<a name="l00194"></a>00194 
+<a name="l00195"></a>00195     <span class="comment">// Convert KiB to Byte.</span>
+<a name="l00196"></a>00196     <span class="keywordflow">return</span> ret * 1024;
+<a name="l00197"></a>00197 }
 </pre></div></p>
 
 <p><div class="dynheader">
@@ -160,19 +280,19 @@
           <td class="memname">int set_opt </td>
           <td>(</td>
           <td class="paramtype">char *&nbsp;</td>
-          <td class="paramname">, </td>
+          <td class="paramname"> <em>pmem</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">long *&nbsp;</td>
-          <td class="paramname">, </td>
+          <td class="paramname"> <em>psetrate</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">long *&nbsp;</td>
-          <td class="paramname"></td><td>&nbsp;</td>
+          <td class="paramname"> <em>psetvalue</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -183,45 +303,80 @@
 </div>
 <div class="memdoc">
 
-<p>在文件<a class="el" href="../../d6/d99/memory__limit_8c_source.html">memory_limit.c</a>第<a class="el" href="../../d6/d99/memory__limit_8c_source.html#l00111">111</a>行定义。</p>
+<p>Set free memory information. </p>
+<pre>
+    Read a string which contains free memory information, and set
+    malloc size and rate.
+    Example:
+                char * input;               set_opt(input, p_rate, p_value);
+    </pre> <dl><dt><b>参数:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>pmem</em>&nbsp;</td><td>A string which contains free memory information. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>psetrate</em>&nbsp;</td><td>Malloc rate. </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>psetvalue</em>&nbsp;</td><td>Malloc size. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>Zero for success, none-zero for failures. </dd></dl>
+<dl><dt><b>返回值:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>0</em>&nbsp;</td><td>Successful. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>-1</em>&nbsp;</td><td>Input parameters error. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>参见:</b></dt><dd>/proc/meminfo </dd></dl>
+<dl class="attention"><dt><b>注意:</b></dt><dd></dd></dl>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00112"></a>00112 {
-<a name="l00113"></a>00113     <span class="keywordtype">char</span> setunit = <span class="charliteral">&apos;0&apos;</span>;
-<a name="l00114"></a>00114     setunit = *(pmem + strlen(pmem) - 1);
-<a name="l00115"></a>00115     <span class="keywordflow">if</span> (<span class="charliteral">&apos;G&apos;</span> == setunit || <span class="charliteral">&apos;g&apos;</span> == setunit)
-<a name="l00116"></a>00116     {
-<a name="l00117"></a>00117         *psetrate = 1024 * 1024;
-<a name="l00118"></a>00118         *(pmem + strlen(pmem) - 1) = <span class="charliteral">&apos;\0&apos;</span>;
-<a name="l00119"></a>00119         *psetvalue = (*psetrate) * 1024 * atoi(pmem);
-<a name="l00120"></a>00120         printf(<span class="stringliteral">&quot;Set free memory to: %ld bytes.\n&quot;</span>, *psetvalue);
-<a name="l00121"></a>00121     }
-<a name="l00122"></a>00122     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="charliteral">&apos;M&apos;</span> == setunit || <span class="charliteral">&apos;m&apos;</span> == setunit)
-<a name="l00123"></a>00123     {
-<a name="l00124"></a>00124         *psetrate = 1024 * 1024;
-<a name="l00125"></a>00125         *(pmem + strlen(pmem) - 1) = <span class="charliteral">&apos;\0&apos;</span>;
-<a name="l00126"></a>00126         *psetvalue = (*psetrate) * atoi(pmem);
-<a name="l00127"></a>00127         printf(<span class="stringliteral">&quot;Set free memory to: %ld bytes.\n&quot;</span>, *psetvalue);
-<a name="l00128"></a>00128     }
-<a name="l00129"></a>00129     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="charliteral">&apos;K&apos;</span> == setunit || <span class="charliteral">&apos;k&apos;</span> == setunit)
-<a name="l00130"></a>00130     {
-<a name="l00131"></a>00131         *psetrate = 1024;
-<a name="l00132"></a>00132         *(pmem + strlen(pmem) - 1) = <span class="charliteral">&apos;\0&apos;</span>;
-<a name="l00133"></a>00133         *psetvalue = (*psetrate) * atoi(pmem);
-<a name="l00134"></a>00134         printf(<span class="stringliteral">&quot;Set free memory to: %ld bytes.\n&quot;</span>, *psetvalue);
-<a name="l00135"></a>00135     }
-<a name="l00136"></a>00136     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="charliteral">&apos;B&apos;</span> == setunit || (setunit &gt;= <span class="charliteral">&apos;0&apos;</span> &amp;&amp; setunit &lt;= <span class="charliteral">&apos;9&apos;</span>))
-<a name="l00137"></a>00137     {
-<a name="l00138"></a>00138         *psetrate = 1;
-<a name="l00139"></a>00139         *psetvalue = (*psetrate) * atoi(pmem);
-<a name="l00140"></a>00140         printf(<span class="stringliteral">&quot;Set free memory to: %ld bytes.\n&quot;</span>, *psetvalue);
-<a name="l00141"></a>00141     }
-<a name="l00142"></a>00142     <span class="keywordflow">else</span>
-<a name="l00143"></a>00143     {
-<a name="l00144"></a>00144         printf(<span class="stringliteral">&quot;Input memory size error!\n&quot;</span>);
-<a name="l00145"></a>00145         <span class="keywordflow">return</span> -1;
-<a name="l00146"></a>00146     }
-<a name="l00147"></a>00147     <span class="keywordflow">return</span> 0;
-<a name="l00148"></a>00148 }
+<p>在文件<a class="el" href="../../d6/d99/memory__limit_8c_source.html">memory_limit.c</a>第<a class="el" href="../../d6/d99/memory__limit_8c_source.html#l00219">219</a>行定义。</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00220"></a>00220 {
+<a name="l00221"></a>00221     <span class="keywordflow">if</span>((NULL == pmem) || (NULL == psetrate) || (NULL == psetvalue))
+<a name="l00222"></a>00222     {
+<a name="l00223"></a>00223         <span class="keywordflow">return</span> -1;
+<a name="l00224"></a>00224     }
+<a name="l00225"></a>00225     <span class="comment">// The last charactor is the unit flag bit.</span>
+<a name="l00226"></a>00226     <span class="keywordtype">char</span> setunit = <span class="charliteral">&apos;0&apos;</span>;
+<a name="l00227"></a>00227     setunit = *(pmem + strlen(pmem) - 1);
+<a name="l00228"></a>00228     <span class="comment">// The unit flag &apos;G&apos; or &apos;g&apos; means GiB.</span>
+<a name="l00229"></a>00229     <span class="keywordflow">if</span> (<span class="charliteral">&apos;G&apos;</span> == setunit || <span class="charliteral">&apos;g&apos;</span> == setunit)
+<a name="l00230"></a>00230     {
+<a name="l00231"></a>00231         *psetrate = 1024 * 1024;
+<a name="l00232"></a>00232         *(pmem + strlen(pmem) - 1) = <span class="charliteral">&apos;\0&apos;</span>;
+<a name="l00233"></a>00233         *psetvalue = (*psetrate) * 1024 * atoi(pmem);
+<a name="l00234"></a>00234         printf(<span class="stringliteral">&quot;Set free memory to: %ld bytes.\n&quot;</span>, *psetvalue);
+<a name="l00235"></a>00235     }
+<a name="l00236"></a>00236     <span class="comment">// The unit flag &apos;M&apos; or &apos;m&apos; means MiB.</span>
+<a name="l00237"></a>00237     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="charliteral">&apos;M&apos;</span> == setunit || <span class="charliteral">&apos;m&apos;</span> == setunit)
+<a name="l00238"></a>00238     {
+<a name="l00239"></a>00239         *psetrate = 1024 * 1024;
+<a name="l00240"></a>00240         *(pmem + strlen(pmem) - 1) = <span class="charliteral">&apos;\0&apos;</span>;
+<a name="l00241"></a>00241         *psetvalue = (*psetrate) * atoi(pmem);
+<a name="l00242"></a>00242         printf(<span class="stringliteral">&quot;Set free memory to: %ld bytes.\n&quot;</span>, *psetvalue);
+<a name="l00243"></a>00243     }
+<a name="l00244"></a>00244     <span class="comment">// The unit flag &apos;K&apos; or &apos;k&apos; means KiB.</span>
+<a name="l00245"></a>00245     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="charliteral">&apos;K&apos;</span> == setunit || <span class="charliteral">&apos;k&apos;</span> == setunit)
+<a name="l00246"></a>00246     {
+<a name="l00247"></a>00247         *psetrate = 1024;
+<a name="l00248"></a>00248         *(pmem + strlen(pmem) - 1) = <span class="charliteral">&apos;\0&apos;</span>;
+<a name="l00249"></a>00249         *psetvalue = (*psetrate) * atoi(pmem);
+<a name="l00250"></a>00250         printf(<span class="stringliteral">&quot;Set free memory to: %ld bytes.\n&quot;</span>, *psetvalue);
+<a name="l00251"></a>00251     }
+<a name="l00252"></a>00252     <span class="comment">// The unit flag &apos;B&apos; or digital means Byte.</span>
+<a name="l00253"></a>00253     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="charliteral">&apos;B&apos;</span> == setunit || (setunit &gt;= <span class="charliteral">&apos;0&apos;</span> &amp;&amp; setunit &lt;= <span class="charliteral">&apos;9&apos;</span>))
+<a name="l00254"></a>00254     {
+<a name="l00255"></a>00255         *psetrate = 1;
+<a name="l00256"></a>00256         *psetvalue = (*psetrate) * atoi(pmem);
+<a name="l00257"></a>00257         printf(<span class="stringliteral">&quot;Set free memory to: %ld bytes.\n&quot;</span>, *psetvalue);
+<a name="l00258"></a>00258     }
+<a name="l00259"></a>00259     <span class="comment">// Input error.</span>
+<a name="l00260"></a>00260     <span class="keywordflow">else</span>
+<a name="l00261"></a>00261     {
+<a name="l00262"></a>00262         printf(<span class="stringliteral">&quot;Input memory size error!\n&quot;</span>);
+<a name="l00263"></a>00263         <span class="keywordflow">return</span> -1;
+<a name="l00264"></a>00264     }
+<a name="l00265"></a>00265     <span class="keywordflow">return</span> 0;
+<a name="l00266"></a>00266 }
 </pre></div></p>
 
 <p><div class="dynheader">
