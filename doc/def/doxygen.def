@@ -13,7 +13,7 @@ struct = {
 int
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'cpu';
-      sec-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.h';
+      sec-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.h';
       sec-mem-desc-line = '18';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
@@ -41,7 +41,7 @@ _EnD_oF_dEf_TeXt_;
 double
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'utilization';
-      sec-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.h';
+      sec-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.h';
       sec-mem-desc-line = '19';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
@@ -56,7 +56,7 @@ _EnD_oF_dEf_TeXt_;
     };
     }; /* sec-member */
   }; /* cp-section */
-  cp-filename  = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.h';
+  cp-filename  = '/root/auto_utilization/src/cpu_limit/cpu_limit.h';
   cp-fileline  = '17';
   cp-briefdesc = <<_EnD_oF_dEf_TeXt_
 
@@ -75,7 +75,7 @@ file = {
       define-mem-virt = normal;
       define-mem-prot = public;
       define-mem-name = '__USE_GNU';
-      define-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.c';
+      define-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.c';
       define-mem-desc-line = '20';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
@@ -93,7 +93,7 @@ _EnD_oF_dEf_TeXt_;
       define-mem-initializer = <<_EnD_oF_dEf_TeXt_
 10000
 _EnD_oF_dEf_TeXt_;
-      define-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.c';
+      define-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.c';
       define-mem-desc-line = '24';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
@@ -116,7 +116,7 @@ _EnD_oF_dEf_TeXt_;
       define-mem-initializer = <<_EnD_oF_dEf_TeXt_
 1000000
 _EnD_oF_dEf_TeXt_;
-      define-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.c';
+      define-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.c';
       define-mem-desc-line = '25';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
@@ -154,7 +154,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'argv';
         func-mem-param-array = '[]';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.c';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.c';
       func-mem-desc-line = '45';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 main function.
@@ -218,7 +218,7 @@ void *
 _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'arg';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.c';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.c';
       func-mem-desc-line = '141';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Bind a thread with a cpu and this thread will spend some utilization 
@@ -276,7 +276,7 @@ int
 _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'size';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.c';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.c';
       func-mem-desc-line = '204';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Spend specified utilization percentages to several cpus.
@@ -337,7 +337,7 @@ int
 _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'size';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.c';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.c';
       func-mem-desc-line = '268';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set cpu utilization percentage to a same value or different ones.
@@ -386,7 +386,7 @@ double *
 _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'p_percentage';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.c';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.c';
       func-mem-desc-line = '354';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get cpu utilization percentage from stdin.
@@ -424,7 +424,7 @@ _EnD_oF_dEf_TeXt_;
 int
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'set_cpuset';
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.c';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.c';
       func-mem-desc-line = '416';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Choose cpus specified, and spend some cpu utilization 
@@ -481,7 +481,7 @@ _EnD_oF_dEf_TeXt_;
 void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'usages';
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.c';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.c';
       func-mem-desc-line = '620';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
@@ -501,7 +501,7 @@ _EnD_oF_dEf_TeXt_;
     };
     }; /* func-member */
     };
-  file-full-name  = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.c';
+  file-full-name  = '/root/auto_utilization/src/cpu_limit/cpu_limit.c';
   file-first-line = '1';
   file-briefdesc  = <<_EnD_oF_dEf_TeXt_
 Spend specified cpu utilization percentage on the cpuset.
@@ -532,7 +532,7 @@ file = {
 struct CPU_UTILIZATION
 _EnD_oF_dEf_TeXt_;
       typedef-mem-name = 'cpu_utilization';
-      typedef-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.h';
+      typedef-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.h';
       typedef-mem-desc-line = '20';
       typedef-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
@@ -559,7 +559,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'cpu_args';
         func-mem-param-defname = 'arg';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.h';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.h';
       func-mem-desc-line = '21';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Bind a thread with a cpu and this thread will spend some utilization 
@@ -618,7 +618,7 @@ int
 _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'size';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.h';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.h';
       func-mem-desc-line = '22';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Spend specified utilization percentages to several cpus.
@@ -673,7 +673,7 @@ double *
 _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'p_percentage';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.h';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.h';
       func-mem-desc-line = '23';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get cpu utilization percentage from stdin.
@@ -724,7 +724,7 @@ int
 _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'size';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.h';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.h';
       func-mem-desc-line = '24';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set cpu utilization percentage to a same value or different ones.
@@ -767,7 +767,7 @@ _EnD_oF_dEf_TeXt_;
 int
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'set_cpuset';
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.h';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.h';
       func-mem-desc-line = '25';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Choose cpus specified, and spend some cpu utilization 
@@ -824,7 +824,7 @@ _EnD_oF_dEf_TeXt_;
 void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'usages';
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.h';
+      func-mem-desc-file = '/root/auto_utilization/src/cpu_limit/cpu_limit.h';
       func-mem-desc-line = '26';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
@@ -844,7 +844,7 @@ _EnD_oF_dEf_TeXt_;
     };
     }; /* func-member */
     };
-  file-full-name  = '/root/CPU_LIMIT/auto_utilization/src/cpu_limit/cpu_limit.h';
+  file-full-name  = '/root/auto_utilization/src/cpu_limit/cpu_limit.h';
   file-first-line = '1';
   file-briefdesc  = <<_EnD_oF_dEf_TeXt_
 Head file for cpu_limit.c.
@@ -872,7 +872,7 @@ file = {
       define-mem-virt = normal;
       define-mem-prot = public;
       define-mem-name = '_GNU_SOURCE';
-      define-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/memory_limit/memory_limit.c';
+      define-mem-desc-file = '/root/auto_utilization/src/memory_limit/memory_limit.c';
       define-mem-desc-line = '16';
       define-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
@@ -905,7 +905,7 @@ _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'argv';
         func-mem-param-array = '[]';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/memory_limit/memory_limit.c';
+      func-mem-desc-file = '/root/auto_utilization/src/memory_limit/memory_limit.c';
       func-mem-desc-line = '49';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 main function.
@@ -965,7 +965,7 @@ _EnD_oF_dEf_TeXt_;
 long
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'free_mem';
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/memory_limit/memory_limit.c';
+      func-mem-desc-file = '/root/auto_utilization/src/memory_limit/memory_limit.c';
       func-mem-desc-line = '164';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get current free memory of the os.
@@ -1017,7 +1017,7 @@ long *
 _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'psetvalue';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/memory_limit/memory_limit.c';
+      func-mem-desc-file = '/root/auto_utilization/src/memory_limit/memory_limit.c';
       func-mem-desc-line = '275';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set free memory information.
@@ -1059,7 +1059,7 @@ char *
 _EnD_oF_dEf_TeXt_;
         func-mem-param-declname = 'value';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/memory_limit/memory_limit.c';
+      func-mem-desc-file = '/root/auto_utilization/src/memory_limit/memory_limit.c';
       func-mem-desc-line = '340';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set value of /proc/sys/vm/drop_caches.
@@ -1095,7 +1095,7 @@ _EnD_oF_dEf_TeXt_;
 void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'memory_limit_usage';
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/memory_limit/memory_limit.c';
+      func-mem-desc-file = '/root/auto_utilization/src/memory_limit/memory_limit.c';
       func-mem-desc-line = '362';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
@@ -1110,7 +1110,7 @@ _EnD_oF_dEf_TeXt_;
     };
     }; /* func-member */
     };
-  file-full-name  = '/root/CPU_LIMIT/auto_utilization/src/memory_limit/memory_limit.c';
+  file-full-name  = '/root/auto_utilization/src/memory_limit/memory_limit.c';
   file-first-line = '1';
   file-briefdesc  = <<_EnD_oF_dEf_TeXt_
 Spend some memory in order to let free space be a specified
@@ -1142,7 +1142,7 @@ file = {
 long
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'free_mem';
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/memory_limit/memory_limit.h';
+      func-mem-desc-file = '/root/auto_utilization/src/memory_limit/memory_limit.h';
       func-mem-desc-line = '15';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get current free memory of the os.
@@ -1182,7 +1182,7 @@ char *
 _EnD_oF_dEf_TeXt_;
         func-mem-param-defname = 'value';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/memory_limit/memory_limit.h';
+      func-mem-desc-file = '/root/auto_utilization/src/memory_limit/memory_limit.h';
       func-mem-desc-line = '16';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set value of /proc/sys/vm/drop_caches.
@@ -1236,7 +1236,7 @@ long *
 _EnD_oF_dEf_TeXt_;
         func-mem-param-defname = 'psetvalue';
       }; /*        func-mem-param--param */
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/memory_limit/memory_limit.h';
+      func-mem-desc-file = '/root/auto_utilization/src/memory_limit/memory_limit.h';
       func-mem-desc-line = '17';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set free memory information.
@@ -1272,7 +1272,7 @@ _EnD_oF_dEf_TeXt_;
 void
 _EnD_oF_dEf_TeXt_;
       func-mem-name = 'memory_limit_usage';
-      func-mem-desc-file = '/root/CPU_LIMIT/auto_utilization/src/memory_limit/memory_limit.h';
+      func-mem-desc-file = '/root/auto_utilization/src/memory_limit/memory_limit.h';
       func-mem-desc-line = '19';
       func-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
@@ -1287,7 +1287,7 @@ _EnD_oF_dEf_TeXt_;
     };
     }; /* func-member */
     };
-  file-full-name  = '/root/CPU_LIMIT/auto_utilization/src/memory_limit/memory_limit.h';
+  file-full-name  = '/root/auto_utilization/src/memory_limit/memory_limit.h';
   file-first-line = '1';
   file-briefdesc  = <<_EnD_oF_dEf_TeXt_
 Head file for memory_limit.c.
