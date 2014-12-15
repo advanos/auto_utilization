@@ -1,3 +1,13 @@
+更新记录
+版本1.0.1，新增configure，更新部分doxygen文档，移除原根目录下可执行文件。
+安装方法：
+# tar zxvf auto_utilization-1.0.1.tar.gz
+# cd auto_utilization
+# ./configure
+# make
+# make install
+
+
 声明
 1、版本1.0.0，实现对cpu利用率的设置和空闲内存的设置，使用事项见下文。
 2、doc目录中有详细的doxygen文档供阅读。
